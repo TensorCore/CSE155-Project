@@ -1,6 +1,6 @@
-# health_app
+# Health Metrics App
 
-A new Flutter project.
+-Description of App: 
 
 ## Getting Started
 
