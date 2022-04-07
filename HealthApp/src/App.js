@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
+import IndexButton from './components/mainButton';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Changed Text</Text>
+      <IndexButton label={'Water'}></IndexButton>
+      <IndexButton label={'Something'}></IndexButton>
       <StatusBar style="auto" />
     </View>
   );
