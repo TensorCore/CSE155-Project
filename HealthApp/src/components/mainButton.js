@@ -4,7 +4,7 @@ import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
 const IndexButton = (props) => {
     return (
         <View>
-            <Pressable style = {styles.button}>
+            <Pressable style = {styles.button} onPress={props.nav}>
                 <Text>{props.label}</Text>
             </Pressable>
         </View>
