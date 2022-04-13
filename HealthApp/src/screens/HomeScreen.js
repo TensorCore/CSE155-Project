@@ -9,7 +9,6 @@ export default function HomeScreen({navigation}) {
     useEffect(() => {
         navigation.setOptions({headerStyle: {backgroundColor: colors.primary}, 
                                headerTintColor: colors.text,
-                               
                               });
     }, [useTheme()])
 
