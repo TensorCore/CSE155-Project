@@ -35,8 +35,10 @@ const LightTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    text: 'white',
-    primary: 'black',
+    primary: 'azure',
+    text: '#474744',
+    background: 'aliceblue',
+    card: 'azure'
   },
 };
 
@@ -45,8 +47,8 @@ const DTheme = {
   colors: {
     ...DarkTheme,
     background: 'grey',
-    primary: 'black',
-    text: 'white'
+    primary: '#161616',
+    text: 'white',
   }
 }
 

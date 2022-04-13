@@ -6,13 +6,12 @@ import IndexButton from '../components/mainButton';
 
 export default function HomeScreen({navigation}) {
     const {colors} = useTheme();
-    console.log(colors);
     useEffect(() => {
         navigation.setOptions({headerStyle: {backgroundColor: colors.primary}, 
                                headerTintColor: colors.text,
                                
                               });
-    }, [])
+    }, [useTheme()])
 
     const moveToExercise = () => {
         navigation.navigate('ExerciseScreen')
@@ -27,7 +26,7 @@ export default function HomeScreen({navigation}) {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={{...styles.container, backgroundColor: colors.background}}>
             <IndexButton label={'Exercise'} nav = {moveToExercise}></IndexButton>
             <IndexButton label={'Water'} nav = {moveToWater}></IndexButton>
             <IndexButton label={'Calories'} nav = {moveToCalories}></IndexButton>
@@ -39,7 +38,6 @@ export default function HomeScreen({navigation}) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'black',
       alignItems: 'center',
       justifyContent: 'space-evenly',
     },

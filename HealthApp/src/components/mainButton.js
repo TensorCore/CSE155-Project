@@ -1,11 +1,15 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
 const IndexButton = (props) => {
+    const {colors} = useTheme();
     return (
         <View style = {styles.container}>
-            <Pressable style = {styles.button} onPress={props.nav}>
-                <Text style = {styles.text}>{props.label}</Text>
+            <Pressable style = {{...styles.button, backgroundColor: colors.card}} onPress={props.nav}>
+                <View>
+                    <Text style = {{...styles.text, color: colors.text}}>{props.label}</Text>
+                </View>
             </Pressable>
         </View>
     )
@@ -13,19 +17,18 @@ const IndexButton = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
+        flexDirection: 'row',
     },
     button: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 32,
-        borderRadius: 4,
-        elevation: 3,
-        backgroundColor: 'cornsilk',
+        flex: 1,
+        padding: 20,
+        margin: 15,
+        marginBottom: 50,
+        borderRadius: 8,
+        elevation: 1,
     },
     text : {
-        color: 'black',
         fontSize: 15,
         fontWeight: 'bold',
     }
