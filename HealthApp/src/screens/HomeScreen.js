@@ -6,7 +6,14 @@ import IndexButton from '../components/mainButton';
 
 export default function HomeScreen({navigation}) {
     const {colors} = useTheme();
-    
+    console.log(colors);
+    useEffect(() => {
+        navigation.setOptions({headerStyle: {backgroundColor: colors.primary}, 
+                               headerTintColor: colors.text,
+                               
+                              });
+    }, [])
+
     const moveToExercise = () => {
         navigation.navigate('ExerciseScreen')
     }
