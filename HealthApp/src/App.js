@@ -2,7 +2,6 @@ import React from 'react';
 import { useColorScheme } from 'react-native';
 import { NavigationContainer, DarkTheme} from '@react-navigation/native';
 import { createNativeStackNavigator} from '@react-navigation/native-stack';
-import { useTheme } from '@react-navigation/native';
 import HomeScreen from './screens/HomeScreen';
 import ExerciseScreen from './screens/ExerciseScreen'
 import WaterScreen from './screens/WaterScreen';
