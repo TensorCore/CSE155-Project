@@ -1,17 +1,20 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TouchableWithoutFeedbackBase, View } from 'react-native';
 
 const IndexButton = (props) => {
     return (
-        <View>
+        <View style = {styles.container}>
             <Pressable style = {styles.button} onPress={props.nav}>
-                <Text>{props.label}</Text>
+                <Text style = {styles.text}>{props.label}</Text>
             </Pressable>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+
+    },
     button: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -19,8 +22,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 32,
         borderRadius: 4,
         elevation: 3,
-        backgroundColor: 'white'
+        backgroundColor: 'cornsilk',
     },
+    text : {
+        color: 'black',
+        fontSize: 15,
+        fontWeight: 'bold',
+    }
   });
   
 

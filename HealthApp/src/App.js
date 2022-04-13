@@ -1,4 +1,5 @@
 import React from 'react';
+import { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
@@ -12,13 +13,20 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-          <Stack.Screen name = "HomeScreen" component={HomeScreen} />
-          <Stack.Screen name = "ExerciseScreen" component={ExerciseScreen} />
-          <Stack.Screen name = "WaterScreen" component={WaterScreen} />
-          <Stack.Screen name = "CalorieScreen" component={CalorieScreen} />
+        <Stack.Group screenOptions={{...headerStyle}}>
+          <Stack.Screen name = "HomeScreen" component={HomeScreen}/>
+          <Stack.Screen name = "ExerciseScreen" component={ExerciseScreen}/>
+          <Stack.Screen name = "WaterScreen" component={WaterScreen}/>
+          <Stack.Screen name = "CalorieScreen" component={CalorieScreen}/>
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+const headerStyle = {
+  headerStyle: {backgroundColor: '#000'}, 
+                headerTintColor: '#fff',
+                headerTitleStyle: {fontWeight: 'bold', fontSize: 24},
+};
 
