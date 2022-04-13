@@ -46,9 +46,10 @@ const DTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme,
-    background: 'grey',
-    primary: '#161616',
+    background: 'black',
+    primary: 'black',
     text: 'white',
+    card: 'black'
   }
 }
 
