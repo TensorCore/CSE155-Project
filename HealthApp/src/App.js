@@ -9,7 +9,6 @@ import CalorieScreen from './screens/CalorieScreen';
 
 const Stack = createNativeStackNavigator();
 
-
 export default function App() {
   const scheme = useColorScheme();
   return(
