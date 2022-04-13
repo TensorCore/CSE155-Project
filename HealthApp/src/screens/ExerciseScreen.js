@@ -1,10 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { View, Text } from 'react-native';
-import { StyleSheet } from 'react-native';
+import React, {useEffect} from 'react';
+import { useTheme } from '@react-navigation/native';
+import { View, Text, StyleSheet } from 'react-native';
+
 
 export default function ExerciseScreen({navigation}) {
-
+    const {colors} = useTheme();
+    useEffect(() => {
+        navigation.setOptions({headerStyle: {backgroundColor: colors.primary}, 
+                               headerTintColor: colors.text, 
+                              });
+    }, [useTheme()])
     return (
         <View>
             <Text>PlaceHolder</Text>
