@@ -29,7 +29,7 @@ export default function App() {
 const headerStyle = {
   headerStyle: {backgroundColor: '#000'}, 
                 headerTintColor: '#fff',
-                headerTitleStyle: {fontWeight: 'bold', fontSize: 25},
+                headerTitleStyle: {fontWeight: 'bold', fontSize: 19},
 };
 
 const LightTheme = {
