@@ -23,8 +23,10 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
         padding: 20,
-        margin: 15,
-        marginBottom: 100,
+        paddingBottom: 50,
+        margin: 10,
+        marginTop: 35,
+        marginBottom: 55,
         borderRadius: 8,
         elevation: 1,
     },
