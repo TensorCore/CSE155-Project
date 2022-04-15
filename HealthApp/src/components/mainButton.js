@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         margin: 15,
-        marginBottom: 50,
+        marginBottom: 100,
         borderRadius: 8,
         elevation: 1,
     },
