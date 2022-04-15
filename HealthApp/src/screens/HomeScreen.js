@@ -27,9 +27,9 @@ export default function HomeScreen({navigation}) {
     return (
         <View style = {styles.container}>
             <ScrollView style = {{...styles.scrollView, backgroundColor: colors.background}}>
-                <IndexButton label={'Exercise'} nav = {moveToExercise}></IndexButton>
-                <IndexButton label={'Water'} nav = {moveToWater}></IndexButton>
-                <IndexButton label={'Calories'} nav = {moveToCalories}></IndexButton>
+                <IndexButton label={'Exercise'} padding={50} nav = {moveToExercise}></IndexButton>
+                <IndexButton label={'Water'} padding={50} nav = {moveToWater}></IndexButton>
+                <IndexButton label={'Calories'} padding={50} nav = {moveToCalories}></IndexButton>
                 <StatusBar style="auto" />
             </ScrollView>
         </View>
