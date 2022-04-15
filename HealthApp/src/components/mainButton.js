@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
-const IndexButton = (props) => {
+export default function IndexButton(props) {
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>
@@ -34,5 +34,3 @@ const styles = StyleSheet.create({
     }
   });
   
-
-export default IndexButton;

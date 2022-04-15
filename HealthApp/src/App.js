@@ -7,6 +7,7 @@ import ExerciseScreen from './screens/ExerciseScreen'
 import WaterScreen from './screens/WaterScreen';
 import CalorieScreen from './screens/CalorieScreen';
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
