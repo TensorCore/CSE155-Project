@@ -1,10 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
-export default function ProgressBar (props) {
-    // const progress = useRef(new Animated.Value(0)).current;
+export default function ProgressBar(props) {
+    // TODO: usecontext for the progress value
+    // TODO: useEffect(){}[dependency] to update 
 
-    const [progress, setValue] = useState(useRef(new Animated.Value(0)).current);
+    const { colors } = useTheme();
+
+    const [progress, setValue] = useState(useRef(new Animated.Value(50)).current);
 
     const fillIn = (props) => {
         Animated.timing(progress, {
@@ -23,17 +27,27 @@ export default function ProgressBar (props) {
     // Pulled off the internet
     // https://www.educba.com/react-native-progress-bar/
     // SyleSheet from same place
-    // should probably personalize
+    // slowly becoming personalized
     return (
-        < View style={progressStyles.containerStyle} >
+        < View
+            style={{
+                ...progressStyles.containerStyle,
+                backgroundColor: colors.background,
+                borderColor: colors.primary
+            }} >
             <Animated.View
-                style={[
-                    progressStyles.innerStyle, 
-                    { width: progressValue / props.max * 100 + "%" },
-                ]}
+                style={{
+                    ...progressStyles.innerStyle,
+                    width: progress._value / props.max * 100 + "%",
+                    // TODO: Figure out what color to use here
+                    backgroundColor: colors.card
+                }}
             />
-            <Animated.Text style={progressStyles.label}>
-                {progressValue} of {props.max}
+            <Animated.Text
+                style={{
+                    ...progressStyles.label, color: colors.text
+                }}>
+                {progress._value} of {props.max}
             </Animated.Text>
         </View >
     );
@@ -44,21 +58,17 @@ const progressStyles = StyleSheet.create({
         width: "100%",
         height: 40,
         padding: 3,
-        borderColor: "#FAA",
-        borderWidth: 3,
+        borderWidth: 0,
         borderRadius: 30,
         marginTop: 200,
         justifyContent: "center",
     },
     innerStyle: {
-        width: "100%",
         height: 31,
         borderRadius: 16,
-        backgroundColor: "green",
     },
     label: {
         fontSize: 24,
-        color: "black",
         position: "absolute",
         zIndex: 1,
         alignSelf: "center",

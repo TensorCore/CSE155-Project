@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useTheme } from '@react-navigation/native';
 import { View, Text, StyleSheet } from 'react-native';
 import {  } from 'react-native';
+import ProgressBar from '../components/progressBar';
 
 export default function WaterScreen({navigation}) {
     const {colors} = useTheme();
@@ -14,7 +15,7 @@ export default function WaterScreen({navigation}) {
 
     return (
         <View>
-            <Text>PlaceHolder</Text>
+            <ProgressBar max = {100}/>
         </View>
     );
 }
