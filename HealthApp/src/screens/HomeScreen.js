@@ -10,7 +10,7 @@ export default function HomeScreen({navigation}) {
         navigation.setOptions({headerStyle: {backgroundColor: colors.primary}, 
                                headerTintColor: colors.text,
                               });
-    }, [useTheme()])
+    }, [colors])
 
     const moveToExercise = () => {
         navigation.navigate('ExerciseScreen')
