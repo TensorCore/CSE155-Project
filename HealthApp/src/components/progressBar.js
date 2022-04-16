@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 
-const ProgressBar = (param) => {
+export default function ProgressBar (props) {
     // const progress = useRef(new Animated.Value(0)).current;
 
     const [progress, setValue] = useState(useRef(new Animated.Value(0)).current);
 
-    const fillIn = (param) => {
+    const fillIn = (props) => {
         Animated.timing(progress, {
-            toValue: param.val,
+            toValue: props.val,
             duration: 1000
         }).start();
     };
@@ -29,11 +29,11 @@ const ProgressBar = (param) => {
             <Animated.View
                 style={[
                     progressStyles.innerStyle, 
-                    { width: progressValue / param.max * 100 + "%" },
+                    { width: progressValue / props.max * 100 + "%" },
                 ]}
             />
             <Animated.Text style={progressStyles.label}>
-                {progressValue} of {param.max}
+                {progressValue} of {props.max}
             </Animated.Text>
         </View >
     );
@@ -64,5 +64,3 @@ const progressStyles = StyleSheet.create({
         alignSelf: "center",
     }
 });
-
-export default ProgressBar;
