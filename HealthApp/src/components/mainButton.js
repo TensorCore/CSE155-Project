@@ -3,12 +3,12 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 export default function IndexButton(props) {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
     return (
-        <View style = {styles.container}>
-            <Pressable style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
+        <View style={styles.container}>
+            <Pressable style={{ ...styles.button, backgroundColor: colors.card, paddingBottom: props.padding }} onPress={props.nav}>
                 <View>
-                    <Text style = {{...styles.text, color: colors.text}}>{props.label}</Text>
+                    <Text style={{ ...styles.text, color: colors.text }}>{props.label}</Text>
                 </View>
             </Pressable>
         </View>
@@ -33,5 +33,5 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
     }
-  });
-  
+});
+
