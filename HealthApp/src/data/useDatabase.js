@@ -8,6 +8,7 @@ export default function useDatabase() {
   useEffect(() => {
     async function loadDataAsync() {
       try {
+        //comment out DROPDB when LIVE
         await database.dropDatabaseTablesAsync()
         await database.setupDatabaseAsync()
         await database.setupDataAsync()
