@@ -47,7 +47,7 @@ const dropDatabaseTablesAsync = async () => {
     return new Promise((resolve, reject) => {
       db.transaction(tx => {
           tx.executeSql(
-            'create table if not exists data (id integer primary key not null, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, water integer, exercise integer, calories integer);'
+            "create table if not exists data (id integer primary key not null, timestamp DATE DEFAULT (date('now','localtime')), water integer, exercise integer, calories integer);"
           );
         },
         (_, error) => { console.log("db error creating tables"); console.log(error); reject(error) },
