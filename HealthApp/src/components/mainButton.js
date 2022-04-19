@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
+import { DataContext } from '../data/dataContext';
+
 export default function IndexButton(props) {
-    const { colors } = useTheme();
+    const {data} = useContext(DataContext);
+    console.log(data);
+    const {colors} = useTheme();
     return (
         <View style={styles.container}>
             <Pressable style={{ ...styles.button, backgroundColor: colors.card, paddingBottom: props.padding }} onPress={props.nav}>
