@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
+import { DataContext } from '../data/dataContext';
+
 export default function IndexButton(props) {
+    const {data} = useContext(DataContext);
+    console.log(data);
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>
