@@ -7,25 +7,31 @@ import ExerciseScreen from './screens/ExerciseScreen'
 import WaterScreen from './screens/WaterScreen';
 import CalorieScreen from './screens/CalorieScreen';
 
+import useDatabase from './data/useDatabase';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const scheme = useColorScheme();
-  return(
-    <NavigationContainer theme={scheme === 'dark' ? DTheme : LightTheme}>
-      <Stack.Navigator>
-        <Stack.Group screenOptions={headerStyle}>
-          <Stack.Screen name = "HomeScreen" component={HomeScreen}/>
-          <Stack.Screen name = "ExerciseScreen" component={ExerciseScreen}/>
-          <Stack.Screen name = "WaterScreen" component={WaterScreen}/>
-          <Stack.Screen name = "CalorieScreen" component={CalorieScreen}/>
-        </Stack.Group>
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  const isDBLoadingComplete = useDatabase();
+  if(isDBLoadingComplete){
+    return(
+      <NavigationContainer theme={scheme === 'dark' ? DTheme : LightTheme}>
+        <Stack.Navigator>
+          <Stack.Group screenOptions={headerStyle}>
+            <Stack.Screen name = "HomeScreen" component={HomeScreen}/>
+            <Stack.Screen name = "ExerciseScreen" component={ExerciseScreen}/>
+            <Stack.Screen name = "WaterScreen" component={WaterScreen}/>
+            <Stack.Screen name = "CalorieScreen" component={CalorieScreen}/>
+          </Stack.Group>
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  } else {
+    console.log('Db loading Error');
+    return null;
+  }
 }
-
 const headerStyle = {
   headerStyle: {backgroundColor: '#000'}, 
                 headerTintColor: '#fff',
