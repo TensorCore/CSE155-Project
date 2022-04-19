@@ -1,7 +1,7 @@
 import React from 'react';
 import * as SQLite from 'expo-sqlite';
 
-const db = openDatabase('db.db');
+const db = SQLite.openDatabase('db.db');
 
 const getData = (setDataFunc) => {
     db.transaction(
@@ -19,9 +19,9 @@ const getData = (setDataFunc) => {
     );
 }
 
-const insertData = (water, exercise, calorie, successFunc) => {
+const insertData = (waterIn, exerciseIn, calorieIn, successFunc) => {
     db.transaction( tx => {
-        tx.executeSql( "insert into data (water, exercise, calorie) values (?, ?, ?)", [water, exercise, calorie]);
+        tx.executeSql('insert into data (water, exercise, calorie) values (?, ?, ?)', [waterIn, exerciseIn, calorieIn]);
       },
       (t, error) => { console.log("db error insertData"); console.log(error);},
       (t, success) => { successFunc() }
@@ -59,7 +59,7 @@ const dropDatabaseTablesAsync = async () => {
   const setupDataAsync = async () => {
     return new Promise((resolve, _reject) => {
       db.transaction( tx => {
-          tx.executeSql( "insert into data (water, exercise, calorie) values (?, ?, ?, ?)", [2, 30, 1000] );
+          tx.executeSql( "insert into data (water, exercise, calorie) values (?, ?, ?)", [2, 30, 1000] );
         },
         (t, error) => { console.log("db error insertData"); console.log(error); resolve() },
         (t, success) => { resolve(success)}
