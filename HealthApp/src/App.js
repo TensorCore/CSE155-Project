@@ -28,7 +28,6 @@ export default function App() {
       </NavigationContainer>
     );
   } else {
-    console.log('Db loading Error');
     return null;
   }
 }
