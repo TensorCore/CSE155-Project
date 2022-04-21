@@ -28,7 +28,6 @@ const insertData = (waterIn, exerciseIn, calorieIn, successFunc) => {
     )
 }
 
-
 const dropDatabaseTablesAsync = async () => {
     return new Promise((resolve, reject) => {
       db.transaction(tx => {
