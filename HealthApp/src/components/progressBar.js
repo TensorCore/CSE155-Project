@@ -1,6 +1,6 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { NavigationContainer, useTheme } from '@react-navigation/native';
 
 export default function ProgressBar(props) {
     // TODO: usecontext for the progress value
@@ -9,6 +9,12 @@ export default function ProgressBar(props) {
     const { colors } = useTheme();
 
     const [progress, setValue] = useState(useRef(new Animated.Value(50)).current);
+
+    const [progressColor, setColor] = useState(colors.primary === 'azure' ? '#AFA' : '#5A5');
+
+    useEffect(() => {
+        setColor(colors.primary === 'azure' ? '#AFA' : '#5A5');
+    }, [colors])
 
     const fillIn = (props) => {
         Animated.timing(progress, {
@@ -24,23 +30,19 @@ export default function ProgressBar(props) {
         }).start();
     };
 
-    // Pulled off the internet
-    // https://www.educba.com/react-native-progress-bar/
-    // SyleSheet from same place
-    // slowly becoming personalized
     return (
         < View
             style={{
                 ...progressStyles.containerStyle,
-                backgroundColor: colors.background,
-                borderColor: colors.primary
+                backgroundColor: colors.card,
+                borderColor: colors.text
             }} >
             <Animated.View
                 style={{
                     ...progressStyles.innerStyle,
                     width: progress._value / props.max * 100 + "%",
                     // TODO: Figure out what color to use here
-                    backgroundColor: colors.card
+                    backgroundColor: progressColor
                 }}
             />
             <Animated.Text
@@ -58,7 +60,7 @@ const progressStyles = StyleSheet.create({
         width: "100%",
         height: 40,
         padding: 3,
-        borderWidth: 0,
+        borderWidth: 1,
         borderRadius: 30,
         marginTop: 200,
         justifyContent: "center",
