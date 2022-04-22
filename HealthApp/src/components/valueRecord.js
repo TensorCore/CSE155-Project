@@ -8,14 +8,23 @@ export default function valueRecord() {
     const {colors} = useTheme();
     
     return(
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={()=>setModalVisible((prev)=>{return(!prev)})}
-        >
-            <View></View>
-        </Modal>
+        <View>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={()=>setModalVisible((prev)=>{return(!prev)})}
+            >
+                <Center>
+                    <Pressable style={{...styles.button, backgroundColor: colors.primary}}
+                                onPress={()=>setModalVisible((prev)=>{return(!prev)})}
+                    >
+                        <Text style={styles.text}>Record</Text>
+                    </Pressable>
+                </Center>
+            </Modal>
+        <Pressable></Pressable>
+        </View>
     )
 }
 
