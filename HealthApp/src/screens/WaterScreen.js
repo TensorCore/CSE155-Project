@@ -10,7 +10,7 @@ export default function WaterScreen({navigation}) {
         navigation.setOptions({headerStyle: {backgroundColor: colors.primary}, 
                                headerTintColor: colors.text, 
                               });
-    }, [useTheme()])
+    }, [colors])
 
     return (
         <View>
