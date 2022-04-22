@@ -4,13 +4,9 @@ import { useTheme } from '@react-navigation/native';
 import { database } from "../data/database";
 
 export default function valueRecord() {
-    const [objectColors, setObjectColors] = useState({});
-    const {colors} = useTheme();
-
-    useEffect(()=>{
-        colors.primary === 'azure' ? setObjectColors(lightType()) : setObjectColors(darkType())
-    },[colors]);
     const [modalVisible, setModalVisible] = useState('false');
+    const {colors} = useTheme();
+    
     return(
         <Modal
             animationType="slide"
