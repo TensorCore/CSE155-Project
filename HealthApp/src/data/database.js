@@ -18,7 +18,6 @@ const insertData = async (Date, waterIn, exerciseIn, calorieIn, successFunc) => 
       console.log({inserted});
 }
 
-<<<<<<< HEAD
 const setupDatabaseAsync = async () => {
     console.log("Database setup called");
     const created = await createTable("data", {timestamp: "DATETIME UNIQUE" , water:"INT", exercise:"INT", calorie:"INT"});
@@ -29,10 +28,6 @@ const updateData = async (Date, data, info) =>{
   switch (data) {
     case "water":
       console.log("Updated Water");
-=======
-const dropDatabaseTablesAsync = async () => {
-    return new Promise((resolve, reject) => {
->>>>>>> 34f76c209fc48614092b89e27c3d71f286e4df0e
       db.transaction(tx => {
         tx.executeSql('UPDATE data SET water = ? WHERE timestamp = ?', [info,Date]);
       })
