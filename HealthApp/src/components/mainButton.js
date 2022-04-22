@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View} from 'react-native';
 import { useTheme } from '@react-navigation/native';
-
 import { DataContext } from '../data/dataContext';
 
 export default function IndexButton(props) {
@@ -37,5 +36,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
     }
-  });
-  
+  }); 
