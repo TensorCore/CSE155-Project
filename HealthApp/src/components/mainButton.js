@@ -4,8 +4,6 @@ import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 
 export default function IndexButton(props) {
-    const {data} = useContext(DataContext);
-    console.log(data);
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>

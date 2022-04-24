@@ -9,8 +9,9 @@ export default function useDatabase() {
     async function loadDataAsync() {
       try {
         //comment out DROPDB when LIVE
-        await database.setupDatabaseAsync()
-
+        database.dropDatabaseTablesAsync()
+        database.setupDatabaseAsync()
+        database.setupDataAsync()
         setDBLoadingComplete(true);
       } catch (e) {
         console.warn(e);

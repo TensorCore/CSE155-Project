@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from "react";
 import * as SQLite from 'expo-sqlite';
-import Database, { createTable, deleteData, executeSql, insert, update, search } from "expo-sqlite-query-helper";
+import Database, { createTable, deleteData, executeSql, insert, update, search, dropTable } from "expo-sqlite-query-helper";
 
-Database('db2.db');
-const db = SQLite.openDatabase('db2.db');
+Database('appData.db');
 
-const getData = async (setDataFunc) => {
-  //insertData("2022-01-02", 1, 2, 3);
-  const result = await executeSql("SELECT * FROM data");
-  console.log({result});
-  updateData("2022-01-01", "water", 3);
+const getData = (setDataFunc) => {
+  executeSql("SELECT * FROM data")
+  .then((obj) => {
+    console.log(obj.rows._array);
+    setDataFunc(obj.rows._array);
+  })
+  .catch((err)=>{console.log(err)});
 }
 
-const insertData = async (Date, waterIn, exerciseIn, calorieIn, successFunc) => {
-  console.log("Begin Insertion");
-      const inserted = await insert("data", [{timestamp: Date, water:waterIn, exercise:exerciseIn, calorie:calorieIn}]);
-      console.log({inserted});
+const insertData = (Date, waterIn, exerciseIn, calorieIn, successFunc) => {
+      insert("data", {timestamp: Date, water:waterIn, exercise:exerciseIn, calorie:calorieIn})
+      .then(()=>{
+        successFunc();
+        console.log('Inserted Data');
+      })
+      .catch((err)=>{console.log(err)});
 }
 
-const setupDatabaseAsync = async () => {
-    console.log("Database setup called");
-    const created = await createTable("data", {timestamp: "DATETIME UNIQUE" , water:"INT", exercise:"INT", calorie:"INT"});
-    console.log({created});
+const setupDatabaseAsync = () => {
+    createTable("data", {id: "INTEGER PRIMARY KEY AUTOINCREMENT", timestamp: "DATE DEFAULT (date('now', 'localtime'))" , water:"INT", exercise:"INT", calorie:"INT"})
+    .then(()=>{console.log('Created Data Table')})
+    .catch((err)=>console.log(err));
 }
 
 const updateData = async (Date, data, info) =>{
@@ -45,15 +49,33 @@ const updateData = async (Date, data, info) =>{
   }
 }
 
-const deleteInfo = async (Date)=>{
+const deleteInfo = (Date) =>{
   console.log("Deleting Information");
-  const deleted = await deleteData("data", {date: Date} );
+  deleteData("data", {date: Date})
+  .then(()=>{console.log('Deleted Data')})
+  .catch((err) => {console.log(err)});
 }
 
-  export const database = {
-      getData,
-      insertData,
-      setupDatabaseAsync,
-      updateData,
-      deleteInfo
-  }
+const dropDatabaseTablesAsync = async () => {
+  dropTable('data')
+  .then(()=>{console.log('Dropped Data Table')})
+  .catch((err)=>{console.log(err)});
+}
+
+const setupDataAsync = () => {
+  insert('data', [{water: 5, exercise: 1000, calorie: 200}, {water: 20, exercise: 300, calorie: 1000}])
+  .then(()=>{
+    console.log('Inserted TestSetupData')
+  })
+  .catch((err)=>{console.log(err)});
+}
+
+export const database = {
+    getData,
+    insertData,
+    setupDatabaseAsync,
+    updateData,
+    deleteInfo,
+    dropDatabaseTablesAsync,
+    setupDataAsync,
+}
