@@ -4,6 +4,7 @@ import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import getToday from '../data/today';
 import ProgressBar from './progressBar';
+import ValueRecord from './valueRecord';
 
 export default function WaterButton(props) {
     const {data} = useContext(DataContext);
@@ -14,6 +15,9 @@ export default function WaterButton(props) {
                 <View>
                     <Text style = {{...styles.text, color: colors.text}}>Water</Text>
                 </View>
+
+                <ValueRecord label = 'Water'></ValueRecord>
+
                 <View>
                     <ProgressBar name='water' max={10}/>
                 </View>

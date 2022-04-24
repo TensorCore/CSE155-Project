@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Pressable, StyleSheet, Text, View, Modal, Dimensions } from 'react-native';
 import { useTheme } from '@react-navigation/native';
-import { database } from "../data/database";
+
 export default function ValueRecord(props) {
     const [modalVisible, setModalVisible] = useState('false');
     const {colors} = useTheme();
@@ -12,7 +12,7 @@ export default function ValueRecord(props) {
     },[])
 
     return(
-        <View>
+        <View style = {{...styles.record, borderColor: colors.text}}>
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -31,8 +31,8 @@ export default function ValueRecord(props) {
                 </View>
             </Modal>
 
-        <Pressable onPress={()=>setModalVisible(true)}>
-            <Text style={{color: colors.text}}>Record</Text>
+        <Pressable onPress={()=>setModalVisible(true)} style = {{...styles.press}}>
+            <Text style={{color: colors.text, fontSize: 11, fontWeight: 'bold'}}>Record</Text>
         </Pressable>
         </View>
     )
@@ -79,4 +79,19 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5
     },
+    record: {
+        fontSize: 15,
+        borderWidth: 0.25,
+        borderRadius: 21,
+        paddingHorizontal: 30,
+        alignContent:'center',
+        alignSelf: 'flex-end',
+        fontWeight: 'bold',
+    },
+    press: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 0,  
+    }
   }); 

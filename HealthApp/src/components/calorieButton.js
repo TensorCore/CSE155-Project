@@ -4,6 +4,7 @@ import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import getToday from '../data/today';
 import ProgressBar from './progressBar';
+import ValueRecord from './valueRecord';
 
 export default function CalorieButton(props) {
     const {data} = useContext(DataContext);
@@ -14,6 +15,9 @@ export default function CalorieButton(props) {
                 <View>
                     <Text style = {{...styles.text, color: colors.text}}>Food</Text>
                 </View>
+
+                <ValueRecord label = 'Calorie'></ValueRecord>
+
                 <View>
                     <ProgressBar name='calorie' max={2000}/>
                 </View>

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Pressable, StyleSheet, Text, TouchableWithoutFeedbackBase, View} from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { Pressable, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+import { useTheme,} from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import ValueRecord from './valueRecord';
 import getToday from '../data/today';
@@ -11,18 +11,21 @@ export default function ExerciseButton(props) {
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>
+            
             <Pressable style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
                 <View>
                     <Text style = {{...styles.text, color: colors.text}}>Exercise</Text>
                 </View>
-                <View style ={{...styles.record, borderColor: colors.text}}>
-                    <ValueRecord label = 'Exercise'></ValueRecord>
-                </View>
-                <View>
+
+                <ValueRecord label = 'Exercise'></ValueRecord>
+
+
+                <View style={{marginTop: 10}}>
                     <ProgressBar name='exercise' max={1000}/>
                 </View>
             </Pressable>
         </View>
+        
     )
 }
 
@@ -44,15 +47,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
     },
-    record: {
-        fontSize: 15,
-        borderWidth: 0.25,
-        borderRadius: 21,
-        paddingHorizontal: 31,
-        paddingVertical: 9,
-        alignContent:'center',
-        alignSelf: 'flex-end',
-        fontWeight: 'bold',
-
-    }
   }); 
