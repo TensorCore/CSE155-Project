@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Pressable, StyleSheet, Text, TouchableWithoutFeedbackBase, View} from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
-import valueRecord from './valueRecord';
+import ValueRecord from './valueRecord';
 import getToday from '../data/today';
 
 export default function ExerciseButton(props) {
@@ -15,7 +15,7 @@ export default function ExerciseButton(props) {
                     <Text style = {{...styles.text, color: colors.text}}>Exercise</Text>
                 </View>
                 <View style ={{...styles.record, borderColor: colors.text}}>
-                    <Text style={colors.text}>Record</Text>
+                    <ValueRecord label = 'Exercise'></ValueRecord>
                 </View>
             </Pressable>
         </View>
@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
     },
     record: {
         fontSize: 15,
-        borderWidth: 1,
+        borderWidth: 0.25,
         borderRadius: 21,
-        padding: 4,
-        paddingHorizontal: 20,
+        paddingHorizontal: 31,
+        paddingVertical: 9,
         alignContent:'center',
         alignSelf: 'flex-end',
         fontWeight: 'bold',
+
     }
   }); 

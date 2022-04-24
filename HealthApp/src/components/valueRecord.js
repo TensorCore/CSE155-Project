@@ -3,10 +3,15 @@ import { Pressable, StyleSheet, Text, View, Modal } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { database } from "../data/database";
 
-export default function valueRecord() {
+export default function ValueRecord(props) {
     const [modalVisible, setModalVisible] = useState('false');
     const {colors} = useTheme();
-    
+    const [label, setLabel] = useState('');
+
+    useEffect(()=>{
+        setLabel(props.label);
+    },[])
+
     return(
         <View>
             <Modal
@@ -15,20 +20,31 @@ export default function valueRecord() {
                 visible={modalVisible}
                 onRequestClose={()=>setModalVisible((prev)=>{return(!prev)})}
             >
-                <Center>
-                    <Pressable style={{...styles.button, backgroundColor: colors.primary}}
-                                onPress={()=>setModalVisible((prev)=>{return(!prev)})}
-                    >
-                        <Text style={styles.text}>Record</Text>
-                    </Pressable>
-                </Center>
+                <View style={styles.centeredView}>
+                    <View style={{backgroundColor: colors.background, ...styles.modalView}}>
+                        <Text>{label}</Text>
+                        <Pressable style={{...styles.button, backgroundColor: colors.primary, alignSelf: 'flex-end'}}
+                                    onPress={()=>setModalVisible((prev)=>{return(!prev)})}
+                        >
+                            <Text style={{color: styles.text}}>Record</Text>
+                        </Pressable>
+                    </View>
+                </View>
             </Modal>
-        <Pressable></Pressable>
+
+        <Pressable onPress={()=>setModalVisible(true)}>
+            <Text style={{color: colors.text}}>Record</Text>
+        </Pressable>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    centeredView: {
+    flex : 1,
+    justifyContent: "center",
+    alignItems: "center",
+    },
     container: {
         height: 15,
         width: 20,
@@ -41,5 +57,21 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: 'bold',
+    },
+    modalView: {
+        flexDirection: "column",
+        height: 400,
+        width: 300,
+        margin: 20,
+        borderRadius: 20,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
     },
   }); 
