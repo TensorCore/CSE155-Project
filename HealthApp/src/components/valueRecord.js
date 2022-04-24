@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
-import { Pressable, StyleSheet, Text, View, Modal } from 'react-native';
+import { Pressable, StyleSheet, Text, View, Modal, Dimensions } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { database } from "../data/database";
-
 export default function ValueRecord(props) {
     const [modalVisible, setModalVisible] = useState('false');
     const {colors} = useTheme();
@@ -42,17 +41,23 @@ export default function ValueRecord(props) {
 const styles = StyleSheet.create({
     centeredView: {
     flex : 1,
-    justifyContent: "center",
+    position: "relative",
     alignItems: "center",
+    justifyContent: "center",
     },
     container: {
         height: 15,
         width: 20,
     },
     button: {
-        borderRadius: 20,
+        borderRadius: 30,
         padding: 10,
-        elevation: 2
+        elevation: 2,
+        position:"absolute",
+        left: Dimensions.get("window").width/100*30,
+        bottom: Dimensions.get("window").height/100*3,
+        alignItems: "flex-end",
+        justifyContent: "center",
     },
     text: {
         fontSize: 15,
