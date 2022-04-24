@@ -6096,7 +6096,7 @@ victory-zoom-container@^36.3.2:
 
 victory@^36.3.2:
   version "36.3.2"
-  resolved "https://registry.npmjs.org/victory/-/victory-36.3.2.tgz"
+  resolved "https://registry.yarnpkg.com/victory/-/victory-36.3.2.tgz#b525e52e6f8c89fb0638ac9ef803862a5780dae5"
   integrity sha512-++LY8hFzhxsWCErN8SMz0WcrhCeueHQz22H3ELzQl4lcDxC1+hyQ1eLm6yGVpfqPG6HROKCRVpxZhE1PiDQFNQ==
   dependencies:
     victory-area "^36.3.2"
