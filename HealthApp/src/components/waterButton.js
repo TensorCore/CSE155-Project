@@ -4,14 +4,14 @@ import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import getToday from '../data/today';
 
-export default function IndexButton(props) {
+export default function WaterButton(props) {
     const {data} = useContext(DataContext);
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>
             <Pressable style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
                 <View>
-                    <Text style = {{...styles.text, color: colors.text}}>{props.label}</Text>
+                    <Text style = {{...styles.text, color: colors.text}}>Water</Text>
                 </View>
             </Pressable>
         </View>

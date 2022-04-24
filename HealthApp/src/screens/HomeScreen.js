@@ -2,7 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { useTheme } from '@react-navigation/native';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import IndexButton from '../components/mainButton';
+import CalorieButton from '../components/calorieButton';
+import WaterButton from '../components/waterButton';
+import ExerciseButton from '../components/exerciseButton';
 
 export default function HomeScreen({navigation}) {
     const {colors} = useTheme();
@@ -27,9 +29,9 @@ export default function HomeScreen({navigation}) {
     return (
         <View style = {styles.container}>
             <ScrollView style = {{...styles.scrollView, backgroundColor: colors.background}}>
-                <IndexButton label={'Exercise'} padding={50} nav = {moveToExercise}></IndexButton>
-                <IndexButton label={'Water'} padding={50} nav = {moveToWater}></IndexButton>
-                <IndexButton label={'Food'} padding={50} nav = {moveToCalories}></IndexButton>
+                <ExerciseButton padding={50} nav = {moveToExercise}/>
+                <WaterButton padding={50} nav = {moveToWater}/>
+                <CalorieButton padding={50} nav = {moveToCalories}/>
                 <StatusBar style="auto" />
             </ScrollView>
         </View>
