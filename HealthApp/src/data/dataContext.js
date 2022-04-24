@@ -21,6 +21,10 @@ export const DataContextProvider = props => {
     return database.insertData(waterIn, exerciseIn, calorieIn, refreshData)
   };
 
+  const updateData = (date, inputNum, infoType) => {
+    return database.updateData(date, inputNum, infoType, refreshData)
+  };
+
   const refreshData = () =>  {
     return database.getData(setData)
   }
@@ -28,7 +32,8 @@ export const DataContextProvider = props => {
   // Make the context object:
   const dataContext = {
     data,
-    addNewData
+    addNewData,
+    updateData,
   };
 
   // pass the value in provider and return

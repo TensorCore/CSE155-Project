@@ -1,18 +1,21 @@
 import React, { useContext } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View} from 'react-native';
 import { useTheme } from '@react-navigation/native';
-
 import { DataContext } from '../data/dataContext';
+import getToday from '../data/today';
+import ProgressBar from './progressBar';
 
-export default function IndexButton(props) {
+export default function CalorieButton(props) {
     const {data} = useContext(DataContext);
-    console.log(data);
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>
             <Pressable style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
                 <View>
-                    <Text style = {{...styles.text, color: colors.text}}>{props.label}</Text>
+                    <Text style = {{...styles.text, color: colors.text}}>Food</Text>
+                </View>
+                <View>
+                    <ProgressBar name='calorie' max={2000}/>
                 </View>
             </Pressable>
         </View>
@@ -37,5 +40,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
     }
-  });
-  
+  }); 

@@ -1,76 +1,81 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import * as SQLite from 'expo-sqlite';
+import Database, { createTable, deleteData, executeSql, insert, update, search, dropTable } from "expo-sqlite-query-helper";
+import historicalData from "./historicalData";
+import getToday from "./today";
 
-const db = SQLite.openDatabase('db.db');
+Database('appData.db');
 
 const getData = (setDataFunc) => {
-    db.transaction(
-        tx => {
-            tx.executeSql(
-            'select * from data',
-            [],
-            (_, { rows: { _array } }) => {
-                setDataFunc(_array)
-        }
-      );
-    },
-     (t, error) => { console.log("db error load data"); console.log(error) },
-     (_t, _success) => { console.log("loaded data")}
-    );
+  executeSql("SELECT * FROM data")
+  .then((obj) => {
+    setDataFunc(obj.rows._array);
+  })
+  .catch((err)=>{console.log(err)});
 }
 
 const insertData = (waterIn, exerciseIn, calorieIn, successFunc) => {
-    db.transaction( tx => {
-        tx.executeSql('insert into data (water, exercise, calorie) values (?, ?, ?)', [waterIn, exerciseIn, calorieIn]);
-      },
-      (t, error) => { console.log("db error insertData"); console.log(error);},
-      (t, success) => { successFunc() }
-    )
+      insert("data", [{water:waterIn, exercise:exerciseIn, calorie:calorieIn}])
+      .then(()=>{
+        successFunc();
+        console.log('Inserted Data');
+      })
+      .catch((err)=>{console.log(err)});
 }
 
+const setupDatabaseAsync = () => {
+    createTable("data", {id: "INTEGER PRIMARY KEY AUTOINCREMENT", timestamp: "DATE DEFAULT (date('now', 'localtime')) UNIQUE" , water:"INT", exercise:"INT", calorie:"INT"})
+    .then(()=>{console.log('Created Data Table')})
+    .catch((err)=>console.log(err));
+}
+
+const updateData = (Date, data, info, successFunc) =>{
+  switch (data) {
+    case "water":
+      update('data', {water: info}, {timestamp: Date})
+      .then(() => {console.log("Updated Water"); successFunc();})
+      .catch((err) => console.log(err));
+    break;
+    case "exercise":
+      update('data', {exercise: info}, {timestamp: Date})
+      .then(() => {console.log("Updated Exercise"); successFunc();})
+      .catch((err) => console.log(err));
+    break;      
+    case "calorie":
+      update('calorie', {water: info}, {timestamp: Date})
+      .then(() => {console.log("Updated calorie"); successFunc();})
+      .catch((err) => console.log(err));
+    break;      
+  }
+}
+
+const deleteInfo = (Date) =>{
+  console.log("Deleting Information");
+  deleteData("data", {date: Date})
+  .then(()=>{console.log('Deleted Data')})
+  .catch((err) => {console.log(err)});
+}
 
 const dropDatabaseTablesAsync = async () => {
-    return new Promise((resolve, reject) => {
-      db.transaction(tx => {
-        tx.executeSql(
-          'drop table data',
-          [],
-          (_, result) => { resolve(result) },
-          (_, error) => { console.log("error dropping data table"); reject(error)
-          }
-        )
-      })
-    })
-  }
+  dropTable('data')
+  .then(()=>{console.log('Dropped Data Table')})
+  .catch((err)=>{console.log(err)});
+}
 
-  const setupDatabaseAsync = async () => {
-    return new Promise((resolve, reject) => {
-      db.transaction(tx => {
-          tx.executeSql(
-            'create table if not exists data (id integer primary key not null, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, water integer, exercise integer, calories integer);'
-          );
-        },
-        (_, error) => { console.log("db error creating tables"); console.log(error); reject(error) },
-        (_, success) => { resolve(success)}
-      )
-    })
-  }
+const setupDataAsync = () => {
+  insert('data', historicalData)
+  .then(()=>{
+    console.log('Inserted TestSetupData')
+  })
+  .catch((err)=>{console.log(err)});
+}
 
-  const setupDataAsync = async () => {
-    return new Promise((resolve, _reject) => {
-      db.transaction( tx => {
-          tx.executeSql( "insert into data (water, exercise, calories) values (?, ?, ?)", [2, 30, 1000] );
-        },
-        (t, error) => { console.log("db error insertData"); console.log(error); resolve() },
-        (t, success) => { resolve(success)}
-      )
-    })
-  }
-
-  export const database = {
-      getData,
-      insertData,
-      setupDatabaseAsync,
-      dropDatabaseTablesAsync,
-      setupDataAsync,
-  }
+export const database = {
+    getData,
+    insertData,
+    setupDatabaseAsync,
+    updateData,
+    deleteInfo,
+    dropDatabaseTablesAsync,
+    setupDataAsync,
+}

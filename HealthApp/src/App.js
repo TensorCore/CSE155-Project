@@ -7,7 +7,6 @@ import HomeScreen from './screens/HomeScreen';
 import ExerciseScreen from './screens/ExerciseScreen'
 import WaterScreen from './screens/WaterScreen';
 import CalorieScreen from './screens/CalorieScreen';
-
 import useDatabase from './data/useDatabase';
 import { DataContextProvider } from './data/dataContext';
 
@@ -48,7 +47,7 @@ const LightTheme = {
     ...DefaultTheme.colors,
     primary: 'azure',
     text: '#474744',
-    background: 'aliceblue',
+    background: 'mintcream',
     card: 'azure'
   },
 };
@@ -60,7 +59,7 @@ const DTheme = {
     background: 'black',
     primary: 'black',
     text: 'white',
-    card: 'black'
+    card: 'gray'
   }
 }
 
