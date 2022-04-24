@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as SQLite from 'expo-sqlite';
 import Database, { createTable, deleteData, executeSql, insert, update, search, dropTable } from "expo-sqlite-query-helper";
 import historicalData from "./historicalData";
+import getToday from "./today";
 
 Database('appData.db');
 
@@ -28,24 +29,24 @@ const setupDatabaseAsync = () => {
     .catch((err)=>console.log(err));
 }
 
-const updateData = async (Date, data, info) =>{
+const updateData = (data, info) =>{
+  let Date = getToday();
   switch (data) {
     case "water":
-      console.log("Updated Water");
-      db.transaction(tx => {
-        tx.executeSql('UPDATE data SET water = ? WHERE timestamp = ?', [info,Date]);
-      })
-      break;
+      update('data', {water: info}, {timestamp: Date})
+      .then(() => {console.log("Updated Water")})
+      .catch((err) => console.log(err));
+    break;
     case "exercise":
-      db.transaction(tx => {
-        tx.executeSql('UPDATE data SET exercise = ? WHERE timestamp = ?', [info,Date]);
-      })
-      break;      
+      update('data', {exercise: info}, {timestamp: Date})
+      .then(() => {console.log("Updated Exercise")})
+      .catch((err) => console.log(err));
+    break;      
     case "calorie":
-      db.transaction(tx => {
-        tx.executeSql('UPDATE data SET calorie = ? WHERE timestamp = ?', [info,Date]);
-      })
-      break;      
+      update('calorie', {water: info}, {timestamp: Date})
+      .then(() => {console.log("Updated calorie")})
+      .catch((err) => console.log(err));
+    break;      
   }
 }
 

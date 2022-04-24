@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Pressable, StyleSheet, Text, View} from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
+import getToday from '../data/today';
 
 export default function IndexButton(props) {
     const {data} = useContext(DataContext);
