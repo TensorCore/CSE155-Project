@@ -7,7 +7,6 @@ Database('appData.db');
 const getData = (setDataFunc) => {
   executeSql("SELECT * FROM data")
   .then((obj) => {
-    console.log(obj.rows._array);
     setDataFunc(obj.rows._array);
   })
   .catch((err)=>{console.log(err)});
