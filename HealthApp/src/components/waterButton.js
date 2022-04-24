@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View} from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import getToday from '../data/today';
+import ProgressBar from './progressBar';
 
 export default function WaterButton(props) {
     const {data} = useContext(DataContext);
@@ -12,6 +13,9 @@ export default function WaterButton(props) {
             <Pressable style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
                 <View>
                     <Text style = {{...styles.text, color: colors.text}}>Water</Text>
+                </View>
+                <View>
+                    <ProgressBar name='water' max={10}/>
                 </View>
             </Pressable>
         </View>

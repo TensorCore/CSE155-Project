@@ -4,6 +4,7 @@ import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import ValueRecord from './valueRecord';
 import getToday from '../data/today';
+import ProgressBar from './progressBar';
 
 export default function ExerciseButton(props) {
     const {data} = useContext(DataContext);
@@ -16,6 +17,9 @@ export default function ExerciseButton(props) {
                 </View>
                 <View style ={{...styles.record, borderColor: colors.text}}>
                     <ValueRecord label = 'Exercise'></ValueRecord>
+                </View>
+                <View>
+                    <ProgressBar name='exercise' max={1000}/>
                 </View>
             </Pressable>
         </View>
