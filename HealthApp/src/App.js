@@ -7,7 +7,6 @@ import HomeScreen from './screens/HomeScreen';
 import ExerciseScreen from './screens/ExerciseScreen'
 import WaterScreen from './screens/WaterScreen';
 import CalorieScreen from './screens/CalorieScreen';
-
 import useDatabase from './data/useDatabase';
 import { DataContextProvider } from './data/dataContext';
 

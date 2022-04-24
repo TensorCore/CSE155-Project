@@ -14,8 +14,8 @@ const getData = (setDataFunc) => {
   .catch((err)=>{console.log(err)});
 }
 
-const insertData = (Date, waterIn, exerciseIn, calorieIn, successFunc) => {
-      insert("data", {timestamp: Date, water:waterIn, exercise:exerciseIn, calorie:calorieIn})
+const insertData = (waterIn, exerciseIn, calorieIn, successFunc) => {
+      insert("data", [{water:waterIn, exercise:exerciseIn, calorie:calorieIn}])
       .then(()=>{
         successFunc();
         console.log('Inserted Data');
@@ -29,22 +29,21 @@ const setupDatabaseAsync = () => {
     .catch((err)=>console.log(err));
 }
 
-const updateData = (data, info) =>{
-  let Date = getToday();
+const updateData = (Date, data, info, successFunc) =>{
   switch (data) {
     case "water":
       update('data', {water: info}, {timestamp: Date})
-      .then(() => {console.log("Updated Water")})
+      .then(() => {console.log("Updated Water"); successFunc();})
       .catch((err) => console.log(err));
     break;
     case "exercise":
       update('data', {exercise: info}, {timestamp: Date})
-      .then(() => {console.log("Updated Exercise")})
+      .then(() => {console.log("Updated Exercise"); successFunc();})
       .catch((err) => console.log(err));
     break;      
     case "calorie":
       update('calorie', {water: info}, {timestamp: Date})
-      .then(() => {console.log("Updated calorie")})
+      .then(() => {console.log("Updated calorie"); successFunc();})
       .catch((err) => console.log(err));
     break;      
   }
