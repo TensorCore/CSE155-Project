@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as SQLite from 'expo-sqlite';
 import Database, { createTable, deleteData, executeSql, insert, update, search, dropTable } from "expo-sqlite-query-helper";
+import historicalData from "./historicalData";
 
 Database('appData.db');
 
@@ -22,7 +23,7 @@ const insertData = (Date, waterIn, exerciseIn, calorieIn, successFunc) => {
 }
 
 const setupDatabaseAsync = () => {
-    createTable("data", {id: "INTEGER PRIMARY KEY AUTOINCREMENT", timestamp: "DATE DEFAULT (date('now', 'localtime'))" , water:"INT", exercise:"INT", calorie:"INT"})
+    createTable("data", {id: "INTEGER PRIMARY KEY AUTOINCREMENT", timestamp: "DATE DEFAULT (date('now', 'localtime')) UNIQUE" , water:"INT", exercise:"INT", calorie:"INT"})
     .then(()=>{console.log('Created Data Table')})
     .catch((err)=>console.log(err));
 }
@@ -62,7 +63,7 @@ const dropDatabaseTablesAsync = async () => {
 }
 
 const setupDataAsync = () => {
-  insert('data', [{water: 5, exercise: 1000, calorie: 200}, {water: 20, exercise: 300, calorie: 1000}])
+  insert('data', historicalData)
   .then(()=>{
     console.log('Inserted TestSetupData')
   })
