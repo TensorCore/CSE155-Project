@@ -7,7 +7,7 @@ import getToday from "../data/today";
 export default function ValueRecord(props) {
     const {data, addNewData, updateData} = useContext(DataContext);
     
-    const [modalVisible, setModalVisible] = useState('false');
+    const [modalVisible, setModalVisible] = useState(false);
     const {colors} = useTheme();
     const [label, setLabel] = useState('');
 
@@ -16,6 +16,13 @@ export default function ValueRecord(props) {
         setLabel(props.label);
     },[props.label])
 
+    const gatherDateData = () => {
+
+    }
+
+    const recordData = () => {
+
+    }
     return(
         <View style = {{...styles.record, borderColor: colors.text}}>
             <Modal
@@ -28,13 +35,14 @@ export default function ValueRecord(props) {
                 <View style={styles.centeredView}>
                     <View style={{backgroundColor: colors.background, ...styles.modalView}}>
                         <Text style={styles.title}>{label} Record</Text>
+                        <Text style={styles.title}>{props.selectedDate}</Text>
                         <View style={styles.formInput}>
-                        <TextInput value={numInput} onChangeText={setNumInput} placeholder='Type Value To Update' keyboardType="numeric"/>
+                        <TextInput style={styles.input} onChangeText={(num)=>{setNumInput(num)}} keyboardType="numeric" placeholder={`Input ${label} Data`} value={numInput.toString()}/>
                         </View>
 
-                        <View style = {{alignContent:'flex-end', marginTop: 50}}>  
+                        <View style = {{alignContent:'flex-end', marginTop: 15}}>  
                         <TouchableOpacity style={{...styles.button, backgroundColor: colors.primary, alignSelf: 'flex-end', paddingHorizontal: 30}}
-                                    onPress={()=>setModalVisible((prev)=>{return(!prev)})}
+                                    onPress={()=>setModalVisible(false)}
                         >
                             <Text style={{color: styles.text}}>Record</Text>
                         </TouchableOpacity>
@@ -103,11 +111,17 @@ const styles = StyleSheet.create({
     formInput: {
         alignContent: 'center',
         justifyContent: 'center',
-        margin: 100,
+        margin: 80,
     },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
         marginTop: 10,
+    },
+    input: {
+        justifyContent: 'center',
+        alignSelf: 'center',
+        alignItems: 'center',
+        fontSize: 15,
     }
   }); 

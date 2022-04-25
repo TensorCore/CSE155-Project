@@ -16,7 +16,7 @@ export default function ExerciseButton(props) {
                     <Text style = {{...styles.text, color: colors.text}}>Exercise</Text>
                 </View>
 
-                <ValueRecord label = 'Exercise'></ValueRecord>
+                <ValueRecord label = 'Exercise' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
                     <ProgressBar name='exercise' max={1000}/>

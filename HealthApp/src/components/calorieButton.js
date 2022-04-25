@@ -16,7 +16,7 @@ export default function CalorieButton(props) {
                     <Text style = {{...styles.text, color: colors.text}}>Food</Text>
                 </View>
 
-                <ValueRecord label = 'Calorie'></ValueRecord>
+                <ValueRecord label = 'Calorie' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
                     <ProgressBar name='calorie' max={2000}/>

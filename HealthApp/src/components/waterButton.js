@@ -16,7 +16,7 @@ export default function WaterButton(props) {
                     <Text style = {{...styles.text, color: colors.text}}>Water</Text>
                 </View>
 
-                <ValueRecord label = 'Water'></ValueRecord>
+                <ValueRecord label = 'Water' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
                     <ProgressBar name='water' max={10}/>
