@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import { Pressable, StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity} from 'react-native';
-import DatePicker from 'react-native-date-picker';
 import { useTheme } from '@react-navigation/native';
 import getToday from "../data/today";
 
@@ -9,7 +8,7 @@ export default function ValueRecord(props) {
     const {colors} = useTheme();
     const [label, setLabel] = useState('');
 
-    const [dateInput ,setDateInput] = useState(getToday());
+    const [dateInput ,setDateInput] = useState(new Date());
     const [numInput, setNumInput] = useState(0);
     useEffect(()=>{
         setLabel(props.label);
@@ -28,9 +27,9 @@ export default function ValueRecord(props) {
                     <View style={{backgroundColor: colors.background, ...styles.modalView}}>
                         <Text style={styles.title}>{label} Record</Text>
                         <View style={styles.formInput}>
-                            <Text>Placeholder</Text>
+
                         </View>
-                        <View style = {{alignContent:'flex-end', marginTop: 80}}>  
+                        <View style = {{alignContent:'flex-end', marginTop: 50}}>  
                         <TouchableOpacity style={{...styles.button, backgroundColor: colors.primary, alignSelf: 'flex-end', paddingHorizontal: 30}}
                                     onPress={()=>setModalVisible((prev)=>{return(!prev)})}
                         >
