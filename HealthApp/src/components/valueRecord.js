@@ -30,11 +30,13 @@ export default function ValueRecord(props) {
                         <View style={styles.formInput}>
                             <Text>Placeholder</Text>
                         </View>
-                        <Pressable style={{...styles.button, backgroundColor: colors.primary, alignSelf: 'flex-end'}}
+                        <View style = {{alignContent:'flex-end', marginTop: 80}}>  
+                        <TouchableOpacity style={{...styles.button, backgroundColor: colors.primary, alignSelf: 'flex-end', paddingHorizontal: 30}}
                                     onPress={()=>setModalVisible((prev)=>{return(!prev)})}
                         >
                             <Text style={{color: styles.text}}>Record</Text>
-                        </Pressable>
+                        </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -61,11 +63,7 @@ const styles = StyleSheet.create({
     button: {
         borderRadius: 30,
         padding: 10,
-        elevation: 2,
-        position:"absolute",
-        left: Dimensions.get("window").width/100*30,
-        bottom: Dimensions.get("window").height/100*3,
-        alignItems: "flex-end",
+        elevation: 3,
         justifyContent: "center",
     },
     text: {
@@ -90,7 +88,6 @@ const styles = StyleSheet.create({
     },
     record: {
         fontSize: 15,
-
         alignContent:'flex-end',
         alignSelf: 'flex-end',
         fontWeight: 'bold',
