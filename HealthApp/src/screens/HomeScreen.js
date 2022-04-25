@@ -23,6 +23,7 @@ export default function HomeScreen({navigation}) {
     const calendarFunction = (event, selectedDate) => {
         setShowCalendar(false)
         setSelectedDate(selectedDate.toISOString().slice(0, 10));
+        console.log(selectedDate);
     }
 
     const pressCalendarFunction = () => {
