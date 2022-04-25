@@ -1,27 +1,35 @@
 import React, {useState, useEffect} from "react";
-import { Pressable, StyleSheet, Text, View, Modal, Dimensions } from 'react-native';
+import { Pressable, StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity} from 'react-native';
+import DatePicker from 'react-native-date-picker';
 import { useTheme } from '@react-navigation/native';
+import getToday from "../data/today";
 
 export default function ValueRecord(props) {
     const [modalVisible, setModalVisible] = useState('false');
     const {colors} = useTheme();
     const [label, setLabel] = useState('');
 
+    const [dateInput ,setDateInput] = useState(getToday());
+    const [numInput, setNumInput] = useState(0);
     useEffect(()=>{
         setLabel(props.label);
-    },[])
+    },[props.label])
 
     return(
         <View style = {{...styles.record, borderColor: colors.text}}>
             <Modal
-                animationType="slide"
+                hardwareAccelerated = {true}
+                animationType="fade"
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={()=>setModalVisible((prev)=>{return(!prev)})}
             >
                 <View style={styles.centeredView}>
                     <View style={{backgroundColor: colors.background, ...styles.modalView}}>
-                        <Text>{label}</Text>
+                        <Text style={styles.title}>{label} Record</Text>
+                        <View style={styles.formInput}>
+                            <Text>Placeholder</Text>
+                        </View>
                         <Pressable style={{...styles.button, backgroundColor: colors.primary, alignSelf: 'flex-end'}}
                                     onPress={()=>setModalVisible((prev)=>{return(!prev)})}
                         >
@@ -31,9 +39,10 @@ export default function ValueRecord(props) {
                 </View>
             </Modal>
 
-        <Pressable onPress={()=>setModalVisible(true)} style = {{...styles.press}}>
-            <Text style={{color: colors.text, fontSize: 11, fontWeight: 'bold'}}>Record</Text>
-        </Pressable>
+            <TouchableOpacity style={{backgroundColor: colors.card, borderWidth: 0.5, borderRadius: 25, paddingHorizontal: 12}} onPress={()=>setModalVisible(true)}>
+                <Text style={{color: colors.text, fontSize: 11, fontWeight: 'bold', padding: 10}}>Record</Text>
+            </TouchableOpacity>
+
         </View>
     )
 }
@@ -81,10 +90,8 @@ const styles = StyleSheet.create({
     },
     record: {
         fontSize: 15,
-        borderWidth: 0.25,
-        borderRadius: 21,
-        paddingHorizontal: 30,
-        alignContent:'center',
+
+        alignContent:'flex-end',
         alignSelf: 'flex-end',
         fontWeight: 'bold',
     },
@@ -92,6 +99,16 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 0,  
+        padding: 0,
+    },
+    formInput: {
+        alignContent: 'center',
+        justifyContent: 'center',
+        margin: 100,
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginTop: 10,
     }
   }); 
