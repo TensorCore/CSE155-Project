@@ -17,6 +17,7 @@ export default function ProgressBar(props) {
         // Also, getToday() might need some time localization to work
         // if (getToday() === obj.timestamp) {
         if (props.selectedDate === obj.timestamp) {
+            console.log(props.selectedDate === obj.timestamp);
             setValue(obj[props.name]);
         }
     }
