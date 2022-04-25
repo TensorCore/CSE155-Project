@@ -22,8 +22,8 @@ export default function HomeScreen({navigation}) {
 
     const calendarFunction = (event, selectedDate) => {
         setShowCalendar(false)
-        setSelectedDate(selectedDate.toISOString().slice(0, 10));
-        console.log(selectedDate);
+        setSelectedDate(selectedDate.slice(0, 10));
+        console.log(selectedDate.slice(0, 10));
     }
 
     const pressCalendarFunction = () => {
@@ -31,7 +31,7 @@ export default function HomeScreen({navigation}) {
     }
 
     const dateConversion = (dateIn) => {
-        const formatYmd = (date) => date.toISOString().slice(0, 10);
+        const formatYmd = (date) => date.slice(0, 10);
         setSelectedDate(formatYmd(dateIn));
     }
 
@@ -54,7 +54,7 @@ export default function HomeScreen({navigation}) {
                     <Text style={{...styles.dateText, color: colors.text}}>{dateSelected}</Text>
                     <Button style = {styles.button} title="Change Date" onPress={pressCalendarFunction}></Button>
                 </View>
-                {showCalendar && (<DateTimePicker value = {preDateSetup} mode = 'date' onChange={calendarFunction}></DateTimePicker>)}
+                {showCalendar && (<DateTimePicker display = 'spinner' value = {preDateSetup} mode = 'date' onChange={calendarFunction}></DateTimePicker>)}
                 <ExerciseButton padding={50} nav = {moveToExercise} passThroughDate={dateSelected}/>
                 <WaterButton padding={50} nav = {moveToWater} passThroughDate={dateSelected}/>
                 <CalorieButton padding={50} nav = {moveToCalories} passThroughDate={dateSelected}/>
