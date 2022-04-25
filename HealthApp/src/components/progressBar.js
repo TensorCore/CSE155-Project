@@ -39,8 +39,8 @@ export default function ProgressBar(props) {
     const [progressColor, setColor] = useState(getProgressColor());
 
     useEffect(() => {
-        // if (!(typeof data === 'undefined'))
-        data.map(getDailyData);
+        if (!(typeof data === 'undefined'))
+            data.map(getDailyData);
         setColor(getProgressColor());
     }, [colors, data, props.selectedDate])
 
