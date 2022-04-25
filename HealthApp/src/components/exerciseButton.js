@@ -11,7 +11,6 @@ export default function ExerciseButton(props) {
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>
-            
             <Pressable style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
                 <View>
                     <Text style = {{...styles.text, color: colors.text}}>Exercise</Text>
@@ -19,8 +18,7 @@ export default function ExerciseButton(props) {
 
                 <ValueRecord label = 'Exercise'></ValueRecord>
 
-
-                <View style={{marginTop: 10}}>
+                <View>
                     <ProgressBar name='exercise' max={1000}/>
                 </View>
             </Pressable>
