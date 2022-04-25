@@ -23,14 +23,25 @@ export default function ProgressBar(props) {
         }
     }
 
+    const getProgressColor = () => {
+        let progressPerc = progress / props.max;
+        if (progressPerc < .34) {
+            return (colors.primary === 'azure' ? '#FAA' : '#A55');
+        } else if (progressPerc < .67) {
+            return (colors.primary === 'azure' ? '#FA5' : '#A50');
+        } else {
+            return (colors.primary === 'azure' ? '#AFA' : '#5A5');
+        }
+    }
+
     // Make sure colors are on theme
     const { colors } = useTheme();
-    const [progressColor, setColor] = useState(colors.primary === 'azure' ? '#AFA' : '#5A5');
+    const [progressColor, setColor] = useState(getProgressColor());
 
     useEffect(() => {
-        setColor(colors.primary === 'azure' ? '#AFA' : '#5A5');
-        if (!(typeof data === 'undefined'))
-            data.map(getDailyData);
+        // if (!(typeof data === 'undefined'))
+        data.map(getDailyData);
+        setColor(getProgressColor());
     }, [colors, data, props.selectedDate])
 
     return (
