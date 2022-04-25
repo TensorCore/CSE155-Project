@@ -19,7 +19,7 @@ export default function CalorieButton(props) {
                 <ValueRecord label = 'Calorie' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
-                    <ProgressBar name='calorie' max={2000}/>
+                    <ProgressBar name='calorie' max={2000} selectedDate = {props.passThroughDate}/>
                 </View>
             </Pressable>
         </View>

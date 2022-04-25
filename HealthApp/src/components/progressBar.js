@@ -16,7 +16,8 @@ export default function ProgressBar(props) {
         // Today doesn't have data right now
         // Also, getToday() might need some time localization to work
         // if (getToday() === obj.timestamp) {
-        if ("2022-03-09" === obj.timestamp) {
+        if (props.selectedDate === obj.timestamp) {
+            console.log(props.selectedDate === obj.timestamp);
             setValue(obj[props.name]);
             console.log(obj[props.name]);
         }
@@ -30,11 +31,11 @@ export default function ProgressBar(props) {
         setColor(colors.primary === 'azure' ? '#AFA' : '#5A5');
         if (!(typeof data === 'undefined'))
             data.map(getDailyData);
-    }, [colors, data])
+    }, [colors, data, props.selectedDate])
 
     return (
         <View>
-            <Progress.Bar width={200} borderRadius={10}
+            <Progress.Bar height={15} width={190} borderRadius={10}
                 color={progressColor} progress={progress / props.max} />
         </View>
     );

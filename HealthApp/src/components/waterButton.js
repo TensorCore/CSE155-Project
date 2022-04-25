@@ -19,7 +19,7 @@ export default function WaterButton(props) {
                 <ValueRecord label = 'Water' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
-                    <ProgressBar name='water' max={10}/>
+                    <ProgressBar name='water' max={10} selectedDate = {props.passThroughDate}/>
                 </View>
             </Pressable>
         </View>
