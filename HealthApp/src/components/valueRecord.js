@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { Pressable, StyleSheet, Text, View, Modal, TouchableOpacity, TextInput} from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import { DataContext } from "../data/dataContext";
 import getToday from "../data/today";
 
 export default function ValueRecord(props) {
+    const {data, addNewData, updateData} = useContext(DataContext);
+    
     const [modalVisible, setModalVisible] = useState('false');
     const {colors} = useTheme();
     const [label, setLabel] = useState('');
