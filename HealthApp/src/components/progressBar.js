@@ -45,7 +45,7 @@ export default function ProgressBar(props) {
 
     return (
         <View>
-            <Progress.Bar height={15} width={190} borderRadius={10}
+            <Progress.Bar borderColor={colors.text} height={15} width={190} borderRadius={10}
                 color={progressColor} progress={progress / props.max} />
         </View>
     );
