@@ -21,7 +21,9 @@ export default function ValueRecord(props) {
     }
 
     const recordData = () => {
-
+        updateData(props.selectedDate, props.label.toLowerCase(), numInput)
+        setNumInput(0);
+        console.log('Recording Data')
     }
     return(
         <View style = {{...styles.record, borderColor: colors.text}}>
@@ -42,7 +44,7 @@ export default function ValueRecord(props) {
 
                         <View style = {{alignContent:'flex-end', marginTop: 15}}>  
                         <TouchableOpacity style={{...styles.button, backgroundColor: colors.primary, alignSelf: 'flex-end', paddingHorizontal: 30}}
-                                    onPress={()=>setModalVisible(false)}
+                                    onPress={()=>{recordData(); setModalVisible(false);}}
                         >
                             <Text style={{color: styles.text}}>Record</Text>
                         </TouchableOpacity>

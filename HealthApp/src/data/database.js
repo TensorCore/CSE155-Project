@@ -29,20 +29,20 @@ const setupDatabaseAsync = () => {
     .catch((err)=>console.log(err));
 }
 
-const updateData = (Date, data, info, successFunc) =>{
-  switch (data) {
+const updateData = (Date, infoType, dataIn, successFunc) =>{
+  switch (infoType) {
     case "water":
-      update('data', {water: info}, {timestamp: Date})
+      executeSql("UPDATE data SET water = ? WHERE timestamp = ?", [dataIn, Date])
       .then(() => {console.log("Updated Water"); successFunc();})
       .catch((err) => console.log(err));
     break;
     case "exercise":
-      update('data', {exercise: info}, {timestamp: Date})
+      executeSql("UPDATE data SET exercise = ? WHERE timestamp = ?", [dataIn, Date])
       .then(() => {console.log("Updated Exercise"); successFunc();})
       .catch((err) => console.log(err));
     break;      
     case "calorie":
-      update('calorie', {water: info}, {timestamp: Date})
+      executeSql("UPDATE data SET calorie = ? WHERE timestamp = ?", [dataIn, Date])
       .then(() => {console.log("Updated calorie"); successFunc();})
       .catch((err) => console.log(err));
     break;      

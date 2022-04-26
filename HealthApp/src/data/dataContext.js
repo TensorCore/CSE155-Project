@@ -21,8 +21,8 @@ export const DataContextProvider = props => {
     return database.insertData(waterIn, exerciseIn, calorieIn, refreshData)
   };
 
-  const updateData = (date, inputNum, infoType) => {
-    return database.updateData(date, inputNum, infoType, refreshData)
+  const updateData = (date, infoType, inputNum) => {
+    return database.updateData(date, infoType, inputNum, refreshData)
   };
 
   const refreshData = () =>  {
