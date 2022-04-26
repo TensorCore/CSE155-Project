@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View, Modal, TouchableOpacity, TextInput} 
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from "../data/dataContext";
 import getToday from "../data/today";
+import { database } from "../data/database";
 
 export default function ValueRecord(props) {
     const {data, addNewData, updateData} = useContext(DataContext);
@@ -20,8 +21,15 @@ export default function ValueRecord(props) {
 
     }
 
+    const printdata = (data) => {
+        console.log(data);
+    }
+
     const recordData = () => {
+        database.getData(printdata);
+        if(numInput>0){
         updateData(props.selectedDate, props.label.toLowerCase(), numInput)
+        }
         setNumInput(0);
         console.log('Recording Data')
     }
@@ -46,7 +54,7 @@ export default function ValueRecord(props) {
                         <TouchableOpacity style={{...styles.button, backgroundColor: colors.primary, alignSelf: 'flex-end', paddingHorizontal: 30}}
                                     onPress={()=>{recordData(); setModalVisible(false);}}
                         >
-                            <Text style={{color: styles.text}}>Record</Text>
+                            <Text style={{color: styles.text, fontWeight:'bold'}}>Record</Text>
                         </TouchableOpacity>
                         </View>
                     </View>
@@ -54,7 +62,7 @@ export default function ValueRecord(props) {
             </Modal>
 
             <TouchableOpacity style={{backgroundColor: colors.card, borderWidth: 0.5, borderRadius: 25, paddingHorizontal: 12}} onPress={()=>setModalVisible(true)}>
-                <Text style={{color: colors.text, fontSize: 11, fontWeight: 'bold', padding: 10}}>Record</Text>
+                <Text style={{color: colors.text, fontSize: 13, fontWeight: 'bold', padding: 10}}>Record</Text>
             </TouchableOpacity>
 
         </View>
@@ -73,6 +81,8 @@ const styles = StyleSheet.create({
         width: 20,
     },
     button: {
+        borderWidth: 2,
+        borderColor: 'black',
         borderRadius: 30,
         padding: 10,
         elevation: 3,
@@ -111,6 +121,9 @@ const styles = StyleSheet.create({
         padding: 0,
     },
     formInput: {
+        borderWidth: 2,
+        borderColor: 'black',
+        borderRadius: 50,
         alignContent: 'center',
         justifyContent: 'center',
         margin: 80,
@@ -122,8 +135,9 @@ const styles = StyleSheet.create({
     },
     input: {
         justifyContent: 'center',
-        alignSelf: 'center',
-        alignItems: 'center',
+        alignSelf: 'flex-end',
+        textAlign: 'center',
+        alignItems: 'flex-end',
         fontSize: 15,
     }
   }); 
