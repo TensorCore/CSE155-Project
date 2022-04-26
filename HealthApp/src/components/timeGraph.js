@@ -10,8 +10,8 @@ export default function TimeGraph(props) {
 
     const getColors = () => {
         return (colors.primary === 'azure' ?
-            { good: '#AFA', mid: '#FA5', bad: "#FAA" } :
-            { good: '#5A5', mid: '#A50', bad: "#A55" });
+            { good: '#AFA', mid: '#FC5', bad: "#FAA" } :
+            { good: '#5A5', mid: '#A72', bad: "#A55" });
     }
 
     const getColor = (val) => {
