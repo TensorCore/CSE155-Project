@@ -10,11 +10,56 @@ export default function TimeGraph(props) {
 
     const getColors = () => {
         return (colors.primary === 'azure' ?
-            { above: '#AFA', below: "#FAA" } :
-            { above: '#5A5', below: "#A55" });
+            { good: '#AFA', mid: '#FC5', bad: "#FAA" } :
+            { good: '#5A5', mid: '#A72', bad: "#A55" });
+    }
+
+    const getColor = (val) => {
+        let pcnt = val / props.goal;
+        if (pcnt <= 1 / 3) {
+            return dataColors.bad;
+        } else if (pcnt <= 2 / 3) {
+            return dataColors.mid;
+        } else {
+            return dataColors.good;
+        }
     }
 
     const [dataColors, setColors] = useState(getColors());
+
+    const getMonthDay = (date) => {
+        console.log(date);
+        let month = date.split('-', 3)[1];
+        let day = date.split('-', 3)[2];
+        switch (month) {
+            case '01':
+                return 'Jan' + day;
+            case '02':
+                return 'Feb' + day;
+            case '03':
+                return 'Mar' + day;
+            case '04':
+                return 'Apr' + day;
+            case '05':
+                return 'May' + day;
+            case '06':
+                return 'Jun' + day;
+            case '07':
+                return 'Jul' + day;
+            case '08':
+                return 'Aug' + day;
+            case '09':
+                return 'Sep' + day;
+            case '10':
+                return 'Oct' + day;
+            case '11':
+                return 'Nov' + day;
+            case '12':
+                return 'Dec' + day;
+            default:
+                return 'Udf' + day;
+        }
+    }
 
     useEffect(() => {
         setColors(getColors());
@@ -35,7 +80,7 @@ export default function TimeGraph(props) {
                 // Tooltip appears when user hovers
                 labelComponent={<VictoryTooltip
                     // Not quite sure if this actually does something here
-                    // Can't hurt thoough, right?
+                    // Can't hurt though, right?
                     constrainToVisibleArea
                     // To remove warnings
                     renderInPortal={false}
@@ -48,13 +93,12 @@ export default function TimeGraph(props) {
                     flyoutStyle={{ fill: colors.card, opacity: 0.5 }} />}
                 // Tooltip will show date:\n data
                 labels={({ datum }) =>
-                    `${data[datum._x - 1].timestamp}:\n${datum._y}`}
+                    `${getMonthDay(data[datum._x - 1].timestamp)}:\n${datum._y}`}
                 // Set styling of graph
                 style={{
                     // Fill data points with colors based on value
                     data: {
-                        fill: ({ datum }) => datum._y >= props.goal ?
-                            dataColors.above : dataColors.below
+                        fill: ({ datum }) => getColor(datum._y)
                     }
                 }} />
             <VictoryAxis
