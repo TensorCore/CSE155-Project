@@ -13,6 +13,7 @@ export default function HomeScreen({navigation}) {
     var today = new Date();
     const [preDateSetup, setPreDateSetup] = useState(new Date(today.toLocaleDateString()));
     const [dateSelected, setSelectedDate] = useState(getToday());
+    
     const [showCalendar, setShowCalendar] = useState(false);
     const {colors} = useTheme();
     useEffect(() => {
