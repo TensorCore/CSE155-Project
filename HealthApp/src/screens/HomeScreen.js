@@ -30,11 +30,6 @@ export default function HomeScreen({navigation}) {
         setShowCalendar(true);
     }
 
-    const dateConversion = (dateIn) => {
-        const formatYmd = (date) => date.slice(0, 10);
-        setSelectedDate(formatYmd(dateIn));
-    }
-
     const moveToExercise = () => {
         navigation.navigate('ExerciseScreen')
     }
