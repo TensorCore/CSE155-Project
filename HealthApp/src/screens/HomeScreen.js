@@ -9,8 +9,9 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import getToday from '../data/today';
 
 export default function HomeScreen({navigation}) {
-    const [preDateSetup, setPreDateSetup] = useState(new Date());
-    const [dateSelected, setSelectedDate] = useState(getToday());
+    var today = new Date();
+    const [preDateSetup, setPreDateSetup] = useState(new Date(today.toLocaleDateString()));
+    const [dateSelected, setSelectedDate] = useState(today.toLocaleDateString());
     const [showCalendar, setShowCalendar] = useState(false);
 
     const {colors} = useTheme();
