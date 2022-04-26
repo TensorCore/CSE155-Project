@@ -38,15 +38,17 @@ export default function ProgressBar(props) {
     const [progressColor, setColor] = useState(getProgressColor());
 
     useEffect(() => {
-        if (!(typeof data === 'undefined'))
+        setValue(0);
+        if (!(typeof data === 'undefined')) { 
             data.map(getDailyData);
+        }
         setColor(getProgressColor());
     }, [colors, data, props.selectedDate])
 
     return (
         <View>
             <Progress.Bar borderColor={colors.text} height={15} width={190} borderRadius={10}
-                color={progressColor} progress={progress / props.max} />
+                color={progressColor} progress={progress / props.max}/>
         </View>
     );
 }

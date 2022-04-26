@@ -7,13 +7,13 @@ import WaterButton from '../components/waterButton';
 import ExerciseButton from '../components/exerciseButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import getToday from '../data/today';
+import { update } from 'expo-sqlite-query-helper';
 
 export default function HomeScreen({navigation}) {
     var today = new Date();
     const [preDateSetup, setPreDateSetup] = useState(new Date(today.toLocaleDateString()));
-    const [dateSelected, setSelectedDate] = useState(today.toLocaleDateString());
+    const [dateSelected, setSelectedDate] = useState(getToday());
     const [showCalendar, setShowCalendar] = useState(false);
-
     const {colors} = useTheme();
     useEffect(() => {
         navigation.setOptions({headerStyle: {backgroundColor: colors.primary}, 
@@ -23,8 +23,9 @@ export default function HomeScreen({navigation}) {
 
     const calendarFunction = (event, selectedDate) => {
         setShowCalendar(false)
+        setPreDateSetup(new Date(selectedDate))
         setSelectedDate(selectedDate.toISOString().slice(0, 10));
-        console.log(selectedDate);
+        console.log(selectedDate.toISOString().slice(0, 10));
     }
 
     const pressCalendarFunction = () => {
@@ -47,7 +48,7 @@ export default function HomeScreen({navigation}) {
         <View style = {styles.container}>
             <ScrollView style = {{...styles.scrollView, backgroundColor: colors.background}}>
                 <View style={{...styles.card, backgroundColor: colors.card, }}>
-                    <Text style={{...styles.dateText, color: colors.text}}>{dateSelected}</Text>
+                    <Text style={{...styles.dateText, color: colors.text}}>{preDateSetup.toLocaleDateString()}</Text>
                     <Button style = {styles.button} title="Change Date" onPress={pressCalendarFunction}></Button>
                 </View>
                 {showCalendar && (<DateTimePicker display = 'spinner' value = {preDateSetup} mode = 'date' onChange={calendarFunction} maximumDate={new Date()}></DateTimePicker> )}
