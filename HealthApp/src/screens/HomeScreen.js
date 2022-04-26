@@ -7,7 +7,6 @@ import WaterButton from '../components/waterButton';
 import ExerciseButton from '../components/exerciseButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import getToday from '../data/today';
-import { update } from 'expo-sqlite-query-helper';
 
 export default function HomeScreen({navigation}) {
     var today = new Date();

@@ -3,30 +3,29 @@ import { database } from './database';
 
 export const DataContext = createContext({});
 
-export const DataContextProvider = props => {
+export const DataContextProvider = (props) => {
   // Initial values are obtained from the props
   const {
-    data: initialData,
     children
   } = props;
 
   // Use State to store the values
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([{}]);
 
   useEffect(() => {
     refreshData()
   }, [] )
 
   const addNewData = (waterIn, exerciseIn, calorieIn) => {
-    return database.insertData(waterIn, exerciseIn, calorieIn, refreshData)
+    database.insertData(waterIn, exerciseIn, calorieIn, refreshData)
   };
 
   const updateData = (date, infoType, inputNum) => {
-    return database.updateData(date, infoType, inputNum, refreshData)
+    database.updateData(date, infoType, inputNum, refreshData)
   };
 
   const refreshData = () =>  {
-    return database.getData(setData)
+    database.getData(setData)
   }
 
   // Make the context object:

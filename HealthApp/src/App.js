@@ -21,10 +21,10 @@ export default function App() {
         <NavigationContainer theme={scheme === 'dark' ? DTheme : LightTheme}>
           <Stack.Navigator>
             <Stack.Group screenOptions={headerStyle}>
-              <Stack.Screen name = "HomeScreen" component={HomeScreen}/>
-              <Stack.Screen name = "ExerciseScreen" component={ExerciseScreen}/>
-              <Stack.Screen name = "WaterScreen" component={WaterScreen}/>
-              <Stack.Screen name = "CalorieScreen" component={CalorieScreen}/>
+              <Stack.Screen name = "HomeScreen" component={HomeScreen} />
+              <Stack.Screen name = "ExerciseScreen" component={ExerciseScreen} />
+              <Stack.Screen name = "WaterScreen" component={WaterScreen} />
+              <Stack.Screen name = "CalorieScreen" component={CalorieScreen} />
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>
