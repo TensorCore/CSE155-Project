@@ -32,18 +32,21 @@ const setupDatabaseAsync = () => {
 const updateData = (Date, infoType, dataIn, successFunc) =>{
   switch (infoType) {
     case "water":
-      executeSql("UPDATE data SET water = ? WHERE timestamp = ?", [dataIn, Date])
-      .then(() => {console.log("Updated Water"); successFunc();})
+      executeSql(`INSERT or REPLACE INTO data (id, timestamp, water, exercise, calorie) values ((SELECT ID from DATA WHERE timestamp="${Date}"), "${Date}", ${dataIn}, 
+                (SELECT exercise from DATA WHERE timestamp="${Date}"), (SELECT calorie from DATA WHERE timestamp="${Date}"))`)
+      .then(() => {console.log(`Updated Water ${Date}`); successFunc();})
       .catch((err) => console.log(err));
     break;
     case "exercise":
-      executeSql("UPDATE data SET exercise = ? WHERE timestamp = ?", [dataIn, Date])
-      .then(() => {console.log("Updated Exercise"); successFunc();})
+      executeSql(`INSERT or REPLACE INTO data (id, timestamp, exercise, water, calorie) values ((SELECT ID from DATA WHERE timestamp="${Date}"), "${Date}", ${dataIn}, 
+                (SELECT water from DATA WHERE timestamp="${Date}"), (SELECT calorie from DATA WHERE timestamp="${Date}"))`)
+      .then(() => {console.log(`Updated Exercise ${Date}`); successFunc();})
       .catch((err) => console.log(err));
     break;      
     case "calorie":
-      executeSql("UPDATE data SET calorie = ? WHERE timestamp = ?", [dataIn, Date])
-      .then(() => {console.log("Updated calorie"); successFunc();})
+      executeSql(`INSERT or REPLACE INTO data (id, timestamp, calorie, water, exercise) values ((SELECT ID from DATA WHERE timestamp="${Date}"), "${Date}", ${dataIn}, 
+                (SELECT water from DATA WHERE timestamp="${Date}"), (SELECT exercise from DATA WHERE timestamp="${Date}"))`)
+      .then(() => {console.log(`Updated Calories ${Date}`); successFunc();})
       .catch((err) => console.log(err));
     break;      
   }

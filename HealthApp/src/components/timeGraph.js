@@ -28,7 +28,7 @@ export default function TimeGraph(props) {
     const [dataColors, setColors] = useState(getColors());
 
     const getMonthDay = (date) => {
-        console.log(date);
+        //console.log(date);
         let month = date.split('-', 3)[1];
         let day = date.split('-', 3)[2];
         switch (month) {
