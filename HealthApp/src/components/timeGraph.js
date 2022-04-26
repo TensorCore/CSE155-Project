@@ -37,6 +37,8 @@ export default function TimeGraph(props) {
                     // Not quite sure if this actually does something here
                     // Can't hurt thoough, right?
                     constrainToVisibleArea
+                    // To remove warnings
+                    renderInPortal={false}
                     // Doesn't seem to do anything?
                     angle={-45}
                     // Set text style

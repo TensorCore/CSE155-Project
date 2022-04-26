@@ -20,6 +20,7 @@ export default function ProgressBar(props) {
             console.log(props.selectedDate === obj.timestamp);
             setValue(obj[props.name]);
         }
+        
     }
 
     const getProgressColor = () => {
@@ -48,7 +49,7 @@ export default function ProgressBar(props) {
     return (
         <View>
             <Progress.Bar borderColor={colors.text} height={15} width={190} borderRadius={10}
-                color={progressColor} progress={progress / props.max}/>
+                color={progressColor} progress={progress / props.max} />
         </View>
     );
 }
