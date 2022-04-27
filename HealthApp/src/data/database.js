@@ -59,7 +59,7 @@ const setupDatabaseAsync = () => {
     createTable("data", {id: "INTEGER PRIMARY KEY AUTOINCREMENT", timestamp: "DATE DEFAULT (date('now', 'localtime')) UNIQUE" , water:"INT", exercise:"INT", calorie:"INT"})
     .then(()=>{console.log('Created Data Table')})
     .catch((err)=>console.log(err));
-    createTable("setting", {id: "INTEGER PRIMARY KEY UNIQUE", ExerciseGoal: "INTEGER", FoodGoal: "INTEGER", WaterGoal: "INTEGER"})
+    createTable("setting", {id: "INTEGER PRIMARY KEY", ExerciseGoal: "INTEGER", FoodGoal: "INTEGER", WaterGoal: "INTEGER"})
     .then(()=>{console.log('Created Setting Table')})
     .catch((err)=>console.log(err));
 }
@@ -90,17 +90,17 @@ const updateData = (Date, infoType, dataIn, successFunc) =>{
 const updateSetting = (infoType, dataIn, successFunc) =>{
   switch (infoType) {
     case "water":
-      executeSql(`INSERT or REPLACE INTO setting (WaterGoal) VALUES (${dataIn})`)
+      executeSql(`INSERT or REPLACE INTO setting (id, WaterGoal, ExerciseGoal, FoodGoal) VALUES (1, ${dataIn}, (Select ExerciseGoal FROM setting WHERE ID=1), (Select FoodGoal FROM setting WHERE ID=1))`)
       .then(() => {console.log(`Updated WaterGoal ${dataIn}`); successFunc();})
       .catch((err) => console.log(err));
     break;
     case "exercise":
-      executeSql(`INSERT or REPLACE INTO setting (ExerciseGoal) VALUES (${dataIn})`)
+      executeSql(`INSERT or REPLACE INTO setting (id, ExerciseGoal, FoodGoal, WaterGoal) VALUES (1, ${dataIn}, (Select FoodGoal FROM setting WHERE ID=1), (Select WaterGoal FROM setting WHERE ID=1))`)
       .then(() => {console.log(`Updated ExerciseGoal ${dataIn}`); successFunc();})
       .catch((err) => console.log(err));
     break;      
     case "calorie":
-      executeSql(`INSERT or REPLACE INTO setting (CalorieGoal) VALUES (${dataIn})`)
+      executeSql(`INSERT or REPLACE INTO setting (id, FoodGoal, ExerciseGoal, WaterGoal) VALUES (1, ${dataIn}, (Select ExerciseGoal FROM setting WHERE ID=1), (Select WaterGoal FROM setting WHERE ID=1))`)
       .then(() => {console.log(`Updated CalorieGoal ${dataIn}`); successFunc();})
       .catch((err) => console.log(err));
     break;    

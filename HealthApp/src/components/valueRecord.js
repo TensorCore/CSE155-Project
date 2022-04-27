@@ -3,9 +3,9 @@ import { Pressable, StyleSheet, Text, View, Modal, TouchableOpacity, TextInput} 
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from "../data/dataContext";
 import gatherDateData from "../data/dateData";
-import { database } from "../data/database";
+
 export default function ValueRecord(props) {
-    const {data, updateData, setting} = useContext(DataContext);
+    const {data, updateData, setting, updateSetting} = useContext(DataContext);
     
     const [modalVisible, setModalVisible] = useState(false);
     const {colors} = useTheme();
@@ -23,11 +23,9 @@ export default function ValueRecord(props) {
     }
 
     const recordData = () => {
-        database.getData(printdata);
         if(numInput>=0){
         updateData(props.selectedDate, props.label.toLowerCase(), numInput)
         }
-        database.getData(printdata);
         console.log('Recording Data')
     }
     return(
