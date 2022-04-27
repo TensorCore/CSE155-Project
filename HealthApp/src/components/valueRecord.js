@@ -5,22 +5,18 @@ import { DataContext } from "../data/dataContext";
 import gatherDateData from "../data/dateData";
 import { database } from "../data/database";
 export default function ValueRecord(props) {
-    const {data, updateData, updateSetting} = useContext(DataContext);
+    const {data, updateData, setting} = useContext(DataContext);
     
     const [modalVisible, setModalVisible] = useState(false);
     const {colors} = useTheme();
     const [label, setLabel] = useState('');
     const [numInput, setNumInput] = useState(0);
-
-
     
     useEffect(()=>{
         setLabel(props.label);
         let val = gatherDateData(props.label, props.selectedDate, data)
         setNumInput(val===null ? 0 : val);
     },[props.label, data, props.selectedDate])
-
-
 
     const printdata = () => {
         console.log(data);
