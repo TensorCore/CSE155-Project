@@ -46,7 +46,7 @@ export default function ValueRecord(props) {
                         <Text style={styles.title}>{label} Record</Text>
                         <Text style={styles.title}>{props.selectedDate}</Text>
                         <View style={styles.formInput}>
-                        <TextInput style={styles.input} onChangeText={setNumInput} keyboardType="numeric" placeholder={'Update Data'} value={numInput}/>
+                        <TextInput style={styles.input} onChangeText={setNumInput} keyboardType="numeric" placeholder={'Update Data'} value={numInput===undefined ? undefined:numInput.toString()}/>
                         </View>
 
                         <View style = {{alignContent:'flex-end', marginTop: 15}}>  
