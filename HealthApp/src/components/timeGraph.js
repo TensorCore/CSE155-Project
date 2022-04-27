@@ -28,7 +28,6 @@ export default function TimeGraph(props) {
     const [dataColors, setColors] = useState(getColors());
 
     const getMonthDay = (date) => {
-        //console.log(date);
         let month = date.split('-', 3)[1];
         let day = date.split('-', 3)[2];
         switch (month) {
@@ -84,8 +83,6 @@ export default function TimeGraph(props) {
                     constrainToVisibleArea
                     // To remove warnings
                     renderInPortal={false}
-                    // Doesn't seem to do anything?
-                    angle={-45}
                     // Set text style
                     style={{ fill: colors.text }}
                     // Set flyout style
