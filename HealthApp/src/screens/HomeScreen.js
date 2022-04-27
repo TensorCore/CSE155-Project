@@ -23,22 +23,16 @@ export default function HomeScreen({navigation}) {
 
     const calendarFunction = (event, selectedDate) => {
         if(selectedDate != null){
-            setShowCalendar(false)
+            setShowCalendar(false);
             setPreDateSetup(new Date(selectedDate))
             setSelectedDate(selectedDate.toISOString().slice(0, 10));
             console.log(selectedDate.toISOString().slice(0, 10));
-        }
+        } 
+        setShowCalendar(false);
     }
 
     const pressCalendarFunction = () => {
-        setShowCalendar((prev)=>{
-            if(!prev){
-                return true;
-            } else {
-                setShowCalendar(false);
-                setShowCalendar(true);
-            }
-        });
+        setShowCalendar(true);
     }
 
     const moveToExercise = () => {
