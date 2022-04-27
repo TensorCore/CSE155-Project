@@ -25,7 +25,7 @@ export default function ProgressRing(props) {
 
     const getProgressColor = () => {
         let progressPerc = progress / props.max;
-        return (colors.primary === 'azure' ? '#FAF' : '#A5A');
+        return (colors.primary === 'azure' ? '#5CF' : '#27A');
     }
 
     // Make sure colors are on theme
@@ -46,7 +46,7 @@ export default function ProgressRing(props) {
 
     return (
         <View>
-            <Progress.Circle borderColor={colors.text} thickness={12} size={100} borderRadius={10}
+            <Progress.Circle borderColor={colors.text} thickness={24} size={200} borderRadius={10}
                 color={progressColor} progress={progress / props.max} showsText textStyle={{color: colors.text}}/>
         </View>
     );

@@ -3,11 +3,12 @@ import { Pressable, StyleSheet, Text, View, TouchableOpacity} from 'react-native
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import getToday from '../data/today';
-import ProgressRing from './progressRing';
+import ProgressBar from './progressBar';
 import ValueRecord from './valueRecord';
 
 export default function CalorieButton(props) {
     const {data} = useContext(DataContext);
+
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>
@@ -19,7 +20,7 @@ export default function CalorieButton(props) {
                 <ValueRecord label = 'Calorie' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
-                    <ProgressRing name='calorie' max={1000} selectedDate = {props.passThroughDate}/>
+                    <ProgressBar name='calorie' max={1000} selectedDate = {props.passThroughDate}/>
                 </View>
             </TouchableOpacity>
         </View>

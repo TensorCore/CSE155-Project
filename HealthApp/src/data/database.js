@@ -14,6 +14,30 @@ const getData = (setDataFunc) => {
   .catch((err)=>{console.log(err)});
 }
 
+const getAvgExercise = (setDataFunc) => {
+  executeSql("SELECT AVG(exercise) as avg FROM data")
+  .then((obj) => {
+    setDataFunc(obj.rows._array);
+  })
+  .catch((err)=>{console.log(err)});
+}
+
+const getAvgCalorie = (setDataFunc) => {
+  executeSql("SELECT AVG(calorie) as avg FROM data")
+  .then((obj) => {
+    setDataFunc(obj.rows._array);
+  })
+  .catch((err)=>{console.log(err)});
+}
+
+const getAvgWater = (setDataFunc) => {
+  executeSql("SELECT AVG(water) as avg FROM data")
+  .then((obj) => {
+    setDataFunc(obj.rows._array);
+  })
+  .catch((err)=>{console.log(err)});
+}
+
 const insertData = (waterIn, exerciseIn, calorieIn, successFunc) => {
       insert("data", [{water:waterIn, exercise:exerciseIn, calorie:calorieIn}])
       .then(()=>{
@@ -106,4 +130,7 @@ export const database = {
     dropDatabaseTablesAsync,
     setupDataAsync,
     updateSetting,
+    getAvgExercise,
+    getAvgCalorie,
+    getAvgWater,
 }

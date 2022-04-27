@@ -4,7 +4,7 @@ import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import * as Progress from 'react-native-progress';
 
-export default function ProgressRing(props) {
+export default function ProgressPie(props) {
     // Make sure progress value is linked to data
     const { data } = useContext(DataContext);
 
