@@ -102,7 +102,7 @@ const updateSetting = (infoType, dataIn, successFunc) =>{
 
 const deleteInfo = (Date) =>{
   console.log("Deleting Information");
-  deleteData("data", {date: Date})
+  deleteData("data", {timestamp: Date})
   .then(()=>{console.log('Deleted Data')})
   .catch((err) => {console.log(err)});
 }
