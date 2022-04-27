@@ -46,11 +46,11 @@ export default function ValueRecord(props) {
                         <Text style={styles.title}>{label} Record</Text>
                         <Text style={styles.title}>{props.selectedDate}</Text>
                         <View style={styles.formInput}>
-                        <TextInput style={styles.input} onChangeText={(num)=>{setNumInput(num)}} keyboardType="numeric" placeholder={numInput===0?'Insert Data':'Update Data'} value={numInput}/>
+                        <TextInput style={styles.input} onChangeText={setNumInput} keyboardType="numeric" placeholder={'Update Data'} value={numInput}/>
                         </View>
 
                         <View style = {{alignContent:'flex-end', marginTop: 15}}>  
-                        <TouchableOpacity style={{...styles.button, backgroundColor: colors.primary, alignSelf: 'flex-end', paddingHorizontal: 30}}
+                        <TouchableOpacity style={{...styles.button, backgroundColor: colors.background, alignSelf: 'flex-end', paddingHorizontal: 30}}
                                     onPress={()=>{recordData(); setModalVisible(false);}}
                         >
                             <Text style={{color: styles.text, fontWeight:'bold'}}>Record</Text>
