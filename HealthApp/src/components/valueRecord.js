@@ -27,7 +27,7 @@ export default function ValueRecord(props) {
 
     const recordData = () => {
         database.getData(printdata);
-        if(numInput>0){
+        if(numInput>=0){
         updateData(props.selectedDate, props.label.toLowerCase(), numInput)
         }
         console.log('Recording Data')
