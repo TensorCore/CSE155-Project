@@ -8,6 +8,7 @@ import ValueRecord from './valueRecord';
 
 export default function CalorieButton(props) {
     const {data} = useContext(DataContext);
+
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>
