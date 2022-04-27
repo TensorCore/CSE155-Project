@@ -22,14 +22,23 @@ export default function HomeScreen({navigation}) {
     }, [colors])
 
     const calendarFunction = (event, selectedDate) => {
-        setShowCalendar(false)
-        setPreDateSetup(new Date(selectedDate))
-        setSelectedDate(selectedDate.toISOString().slice(0, 10));
-        console.log(selectedDate.toISOString().slice(0, 10));
+        if(selectedDate != null){
+            setShowCalendar(false)
+            setPreDateSetup(new Date(selectedDate))
+            setSelectedDate(selectedDate.toISOString().slice(0, 10));
+            console.log(selectedDate.toISOString().slice(0, 10));
+        }
     }
 
     const pressCalendarFunction = () => {
-        setShowCalendar(true);
+        setShowCalendar((prev)=>{
+            if(!prev){
+                return true;
+            } else {
+                setShowCalendar(false);
+                setShowCalendar(true);
+            }
+        });
     }
 
     const moveToExercise = () => {
@@ -49,7 +58,7 @@ export default function HomeScreen({navigation}) {
             <ScrollView style = {{...styles.scrollView, backgroundColor: colors.background}}>
                 <View style={{...styles.card, backgroundColor: colors.card, }}>
                     <Text style={{...styles.dateText, color: colors.text}}>{preDateSetup.toISOString().slice(0, 10)===getToday() ? `Today\n${preDateSetup.toLocaleDateString()} ` :preDateSetup.toLocaleDateString()}</Text>
-                    <Button style = {styles.button} title="Change Date" onPress={pressCalendarFunction}></Button>
+                    <Button title="Change Date" onPress={pressCalendarFunction}></Button>
                 </View>
                 {showCalendar && (<DateTimePicker display = 'spinner' value = {preDateSetup} mode = 'date' onChange={calendarFunction} maximumDate={new Date()}></DateTimePicker> )}
 
@@ -86,5 +95,5 @@ const styles = StyleSheet.create({
         fontSize: 20, 
         marginLeft: 25,
         marginRight: 75
-      },
+      }
 });
