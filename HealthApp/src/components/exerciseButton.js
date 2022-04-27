@@ -1,16 +1,15 @@
 import React, { useContext } from 'react';
-import { Pressable, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+import { Pressable, StyleSheet, Text, View} from 'react-native';
 import { useTheme,} from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import ValueRecord from './valueRecord';
-import getToday from '../data/today';
 import ProgressBar from './progressBar';
 
 export default function ExerciseButton(props) {
     const {data} = useContext(DataContext);
     const {colors} = useTheme();
     return (
-        <View style = {styles.container}>
+        <View style = {styles.container} onPress={()=>{}}>
             <Pressable style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
                 <View>
                     <Text style = {{...styles.text, color: colors.text}}>Exercise</Text>
@@ -23,7 +22,6 @@ export default function ExerciseButton(props) {
                 </View>
             </Pressable>
         </View>
-        
     )
 }
 
