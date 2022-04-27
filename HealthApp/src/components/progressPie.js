@@ -4,7 +4,7 @@ import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import * as Progress from 'react-native-progress';
 
-export default function ProgressBar(props) {
+export default function ProgressRing(props) {
     // Make sure progress value is linked to data
     const { data } = useContext(DataContext);
 
@@ -25,13 +25,7 @@ export default function ProgressBar(props) {
 
     const getProgressColor = () => {
         let progressPerc = progress / props.max;
-        if (progressPerc <= 1 / 3) {
-            return (colors.primary === 'azure' ? '#FAA' : '#A55');
-        } else if (progressPerc <= 2 / 3) {
-            return (colors.primary === 'azure' ? '#FC5' : '#A72');
-        } else {
-            return (colors.primary === 'azure' ? '#AFA' : '#5A5');
-        }
+        return (colors.primary === 'azure' ? '#0AF' : '#05A');
     }
 
     // Make sure colors are on theme
@@ -52,7 +46,7 @@ export default function ProgressBar(props) {
 
     return (
         <View>
-            <Progress.Bar borderColor={colors.text} height={15} width={190} borderRadius={10}
+            <Progress.Pie borderColor={colors.text} size={100} borderRadius={10}
                 color={progressColor} progress={progress / props.max} />
         </View>
     );

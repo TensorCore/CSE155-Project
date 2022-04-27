@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View, TouchableOpacity} from 'react-native
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import getToday from '../data/today';
-import ProgressBar from './progressBar';
+import ProgressRing from './progressRing';
 import ValueRecord from './valueRecord';
 
 export default function CalorieButton(props) {
@@ -19,7 +19,7 @@ export default function CalorieButton(props) {
                 <ValueRecord label = 'Calorie' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
-                    <ProgressBar name='calorie' max={1000} selectedDate = {props.passThroughDate}/>
+                    <ProgressRing name='calorie' max={1000} selectedDate = {props.passThroughDate}/>
                 </View>
             </TouchableOpacity>
         </View>
