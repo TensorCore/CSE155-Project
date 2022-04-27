@@ -48,7 +48,7 @@ export default function HomeScreen({navigation}) {
         <View style = {styles.container}>
             <ScrollView style = {{...styles.scrollView, backgroundColor: colors.background}}>
                 <View style={{...styles.card, backgroundColor: colors.card, }}>
-                    <Text style={{...styles.dateText, color: colors.text}}>{preDateSetup.toLocaleDateString()}</Text>
+                    <Text style={{...styles.dateText, color: colors.text}}>{preDateSetup.toISOString().slice(0, 10)===getToday() ? `Today\n${preDateSetup.toLocaleDateString()} ` :preDateSetup.toLocaleDateString()}</Text>
                     <Button style = {styles.button} title="Change Date" onPress={pressCalendarFunction}></Button>
                 </View>
                 {showCalendar && (<DateTimePicker display = 'spinner' value = {preDateSetup} mode = 'date' onChange={calendarFunction} maximumDate={new Date()}></DateTimePicker> )}

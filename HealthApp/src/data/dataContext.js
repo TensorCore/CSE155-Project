@@ -31,7 +31,6 @@ export const DataContextProvider = (props) => {
   // Make the context object:
   const dataContext = {
     data,
-    addNewData,
     updateData,
   };
 

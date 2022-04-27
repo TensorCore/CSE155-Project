@@ -2,26 +2,26 @@ import React, {useState, useEffect, useContext} from "react";
 import { Pressable, StyleSheet, Text, View, Modal, TouchableOpacity, TextInput} from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from "../data/dataContext";
-import getToday from "../data/today";
+import gatherDateData from "../data/dateData";
 import { database } from "../data/database";
+import dateData from "../data/dateData";
 
 export default function ValueRecord(props) {
-    const {data, addNewData, updateData} = useContext(DataContext);
+    const {data, updateData} = useContext(DataContext);
     
     const [modalVisible, setModalVisible] = useState(false);
     const {colors} = useTheme();
     const [label, setLabel] = useState('');
-
     const [numInput, setNumInput] = useState(0);
+    
     useEffect(()=>{
         setLabel(props.label);
-    },[props.label])
+        let val = gatherDateData(props.label, props.selectedDate, data)
+    },[props.label, data, props.selectedDate])
 
-    const gatherDateData = () => {
 
-    }
 
-    const printdata = (data) => {
+    const printdata = () => {
         console.log(data);
     }
 
@@ -30,7 +30,6 @@ export default function ValueRecord(props) {
         if(numInput>0){
         updateData(props.selectedDate, props.label.toLowerCase(), numInput)
         }
-        setNumInput(0);
         console.log('Recording Data')
     }
     return(
@@ -47,7 +46,7 @@ export default function ValueRecord(props) {
                         <Text style={styles.title}>{label} Record</Text>
                         <Text style={styles.title}>{props.selectedDate}</Text>
                         <View style={styles.formInput}>
-                        <TextInput style={styles.input} onChangeText={(num)=>{setNumInput(num)}} keyboardType="numeric" placeholder={`Input ${label} Data`} value={numInput.toString()}/>
+                        <TextInput style={styles.input} onChangeText={(num)=>{setNumInput(num)}} keyboardType="numeric" placeholder={numInput===0?'Insert Data':'Update Data'} value={numInput.toString()}/>
                         </View>
 
                         <View style = {{alignContent:'flex-end', marginTop: 15}}>  
@@ -121,6 +120,7 @@ const styles = StyleSheet.create({
         padding: 0,
     },
     formInput: {
+        flexDirection:'row',
         borderWidth: 2,
         borderColor: 'black',
         borderRadius: 50,
@@ -139,5 +139,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         alignItems: 'flex-end',
         fontSize: 15,
+        paddingHorizontal: 10,
+        paddingVertical: 3,
     }
   }); 
