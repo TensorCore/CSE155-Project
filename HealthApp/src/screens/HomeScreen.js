@@ -52,9 +52,13 @@ export default function HomeScreen({navigation}) {
                     <Button style = {styles.button} title="Change Date" onPress={pressCalendarFunction}></Button>
                 </View>
                 {showCalendar && (<DateTimePicker display = 'spinner' value = {preDateSetup} mode = 'date' onChange={calendarFunction} maximumDate={new Date()}></DateTimePicker> )}
+
                 <ExerciseButton padding={50} nav = {moveToExercise} passThroughDate={dateSelected}/>
+
                 <WaterButton padding={50} nav = {moveToWater} passThroughDate={dateSelected}/>
+
                 <CalorieButton padding={50} nav = {moveToCalories} passThroughDate={dateSelected}/>
+                
                 <StatusBar style="auto" />
             </ScrollView>
         </View>

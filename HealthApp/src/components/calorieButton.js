@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Pressable, StyleSheet, Text, View} from 'react-native';
+import { Pressable, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import getToday from '../data/today';
@@ -11,7 +11,7 @@ export default function CalorieButton(props) {
     const {colors} = useTheme();
     return (
         <View style = {styles.container}>
-            <Pressable style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
+            <TouchableOpacity style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
                 <View>
                     <Text style = {{...styles.text, color: colors.text}}>Food</Text>
                 </View>
@@ -21,7 +21,7 @@ export default function CalorieButton(props) {
                 <View>
                     <ProgressBar name='calorie' max={1000} selectedDate = {props.passThroughDate}/>
                 </View>
-            </Pressable>
+            </TouchableOpacity>
         </View>
     )
 }
