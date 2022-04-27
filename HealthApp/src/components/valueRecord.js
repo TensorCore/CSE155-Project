@@ -4,14 +4,15 @@ import { useTheme } from '@react-navigation/native';
 import { DataContext } from "../data/dataContext";
 import gatherDateData from "../data/dateData";
 import { database } from "../data/database";
-
 export default function ValueRecord(props) {
-    const {data, updateData} = useContext(DataContext);
+    const {data, updateData, updateSetting} = useContext(DataContext);
     
     const [modalVisible, setModalVisible] = useState(false);
     const {colors} = useTheme();
     const [label, setLabel] = useState('');
     const [numInput, setNumInput] = useState(0);
+
+
     
     useEffect(()=>{
         setLabel(props.label);
@@ -30,6 +31,7 @@ export default function ValueRecord(props) {
         if(numInput>=0){
         updateData(props.selectedDate, props.label.toLowerCase(), numInput)
         }
+        database.getData(printdata);
         console.log('Recording Data')
     }
     return(

@@ -15,10 +15,12 @@
     "expo": "^44.0.6",
     "expo-asset": "~8.4.6",
     "expo-file-system": "~13.1.4",
+    "expo-font": "~10.0.4",
     "expo-splash-screen": "~0.14.1",
     "expo-sqlite": "~10.1.0",
     "expo-sqlite-query-helper": "^1.1.4",
     "expo-status-bar": "~1.2.0",
+    "open-dyslexic": "^1.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
@@ -27,8 +29,10 @@
     "react-native-screens": "~3.10.1",
     "react-native-svg": "12.1.1",
     "react-native-web": "0.17.1",
+    "require-style": "^1.1.0",
     "victory": "^36.3.2",
-    "victory-native": "^36.3.2"
+    "victory-native": "^36.3.2",
+    "yo-yo": "^1.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

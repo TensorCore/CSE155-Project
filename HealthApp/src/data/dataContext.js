@@ -28,10 +28,15 @@ export const DataContextProvider = (props) => {
     database.getData(setData)
   }
 
+  const updateSetting = (infoType, inputNum) => {
+    database.updateSetting(infoType, inputNum)
+  };
+
   // Make the context object:
   const dataContext = {
     data,
     updateData,
+    updateSetting,
   };
 
   // pass the value in provider and return
