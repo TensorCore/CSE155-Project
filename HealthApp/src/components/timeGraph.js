@@ -1,6 +1,7 @@
 import { useTheme } from '@react-navigation/native';
 import { useContext, useEffect, useState } from 'react';
-import { VictoryScatter, VictoryChart, VictoryAxis, VictoryLabel, VictoryTooltip, VictoryVoronoiContainer, VictoryBar } from 'victory-native';
+import { View, Text } from 'react-native';
+import { VictoryScatter, VictoryChart, VictoryAxis, VictoryLabel, VictoryTooltip, VictoryVoronoiContainer, VictoryBar, Bar, Background } from 'victory-native';
 import { DataContext } from '../data/dataContext';
 
 export default function TimeGraph(props) {
@@ -65,44 +66,54 @@ export default function TimeGraph(props) {
     }, [colors])
 
     return (
-        <VictoryChart
-            // Voronoi container makes tap jump to closest component
-            containerComponent={<VictoryVoronoiContainer
-                // Look for closest in x direction
-                voronoiDimension="x" />}
-            // Pad left and right of x axis so bars don't overlap with y-axis
-            domainPadding={{ x: 20 }}>
-            <VictoryBar
-                data={data}
-                x="timestamp"
-                y={props.name}
-                // Tooltip appears when user hovers
-                labelComponent={<VictoryTooltip
-                    // Not quite sure if this actually does something here
-                    // Can't hurt though, right?
-                    constrainToVisibleArea
-                    // To remove warnings
-                    renderInPortal={false}
-                    // Set text style
-                    style={{ fill: colors.text }}
-                    // Set flyout style
-                    // Currently has issues with far left one and the axis label
-                    flyoutStyle={{ fill: colors.card, opacity: 0.5 }} />}
-                // Tooltip will show date:\n data
-                labels={({ datum }) =>
-                    `${getMonthDay(data[datum._x - 1].timestamp)}:\n${datum._y}`}
-                // Set styling of graph
-                style={{
-                    // Fill data points with colors based on value
-                    data: {
-                        fill: ({ datum }) => getColor(datum._y)
-                    }
-                }} />
-            <VictoryAxis
-                // fixLabelOverlap={true}
-                // tickLabelComponent={<VictoryLabel angle={-20}/>} 
-                tickCount={2} />
-            <VictoryAxis dependentAxis />
-        </VictoryChart>
+        <View style={{ backgroundColor: colors.background, elevation: 1 }}>
+            <Text style={{
+                paddingLeft: 10,
+                paddingTop: 10,
+                fontSize: 15,
+                fontWeight: 'bold'
+            }}>All Time</Text>
+            <VictoryChart
+                // Voronoi container makes tap jump to closest component
+                containerComponent={<VictoryVoronoiContainer
+                    // Look for closest in x direction
+                    voronoiDimension="x" />}
+                // Pad left and right of x axis so bars don't overlap with y-axis
+                domainPadding={{ x: 20 }}>
+                <VictoryBar
+                    data={data}
+                    x="timestamp"
+                    y={props.name}
+                    // Tooltip appears when user hovers
+                    labelComponent={<VictoryTooltip
+                        // Not quite sure if this actually does something here
+                        // Can't hurt though, right?
+                        constrainToVisibleArea
+                        // To remove warnings
+                        renderInPortal={false}
+                        // Set text style
+                        style={{ fill: colors.text }}
+                        // Set flyout style
+                        // Currently has issues with far left one and the axis label
+                        flyoutStyle={{ fill: colors.card, opacity: 0.5 }}
+                    />}
+                    // Tooltip will show date:\n data
+                    labels={({ datum }) =>
+                        `${getMonthDay(data[datum._x - 1].timestamp)}:\n${datum._y}`}
+                    // Set styling of graph
+                    style={{
+                        // Fill data points with colors based on value
+                        data: {
+                            fill: ({ datum }) => getColor(datum._y)
+                        }
+                    }}
+                />
+                <VictoryAxis
+                    // fixLabelOverlap={true}
+                    // tickLabelComponent={<VictoryLabel angle={-20}/>} 
+                    tickCount={2} />
+                <VictoryAxis dependentAxis />
+            </VictoryChart>
+        </View>
     );
 }
