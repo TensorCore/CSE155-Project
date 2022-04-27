@@ -38,14 +38,21 @@ const getAvgWater = (setDataFunc) => {
   .catch((err)=>{console.log(err)});
 }
 
-const insertData = (waterIn, exerciseIn, calorieIn, successFunc) => {
-      insert("data", [{water:waterIn, exercise:exerciseIn, calorie:calorieIn}])
-      .then(()=>{
-        successFunc();
-        console.log('Inserted Data');
-      })
-      .catch((err)=>{console.log(err)});
+const getSetting = (setDataFunc) => {
+  executeSql("SELECT * FROM setting")
+  .then((obj) => {
+    setDataFunc(obj.rows._array);
+  })
+  .catch((err)=>{console.log(err)});
 }
+// const insertData = (waterIn, exerciseIn, calorieIn, successFunc) => {
+//       insert("data", [{water:waterIn, exercise:exerciseIn, calorie:calorieIn}])
+//       .then(()=>{
+//         successFunc();
+//         console.log('Inserted Data');
+//       })
+//       .catch((err)=>{console.log(err)});
+// }
 
 
 const setupDatabaseAsync = () => {
@@ -123,7 +130,6 @@ const setupDataAsync = () => {
 
 export const database = {
     getData,
-    insertData,
     setupDatabaseAsync,
     updateData,
     deleteInfo,
@@ -133,4 +139,5 @@ export const database = {
     getAvgExercise,
     getAvgCalorie,
     getAvgWater,
+    getSetting,
 }

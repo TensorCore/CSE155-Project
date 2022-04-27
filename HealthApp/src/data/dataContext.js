@@ -14,6 +14,7 @@ export const DataContextProvider = (props) => {
   const [totalAvgCalorie, setAvgCalorie] = useState([{}]);
   const [totalAvgWater, setAvgWater] = useState([{}]);
   const [totalAvgExercise, setAvgExercise] = useState([{}]);
+  const [setting, setSetting] = useState([{}]);
 
   useEffect(() => {
     refreshData()
@@ -27,16 +28,17 @@ export const DataContextProvider = (props) => {
     database.updateData(date, infoType, inputNum, refreshData)
   };
 
+  const updateSetting = (infoType, inputNum) => {
+    database.updateSetting(infoType, inputNum, refreshData)
+  };
+
   const refreshData = () =>  {
     database.getAvgCalorie(setAvgCalorie);
     database.getAvgWater(setAvgWater);
     database.getAvgExercise(setAvgExercise);
+    database.getSetting(setSetting);
     database.getData(setData);
   }
-
-  const updateSetting = (infoType, inputNum) => {
-    database.updateSetting(infoType, inputNum)
-  };
 
   // Make the context object:
   const dataContext = {
@@ -45,7 +47,8 @@ export const DataContextProvider = (props) => {
     updateSetting,
     totalAvgExercise,
     totalAvgWater,
-    totalAvgCalorie
+    totalAvgCalorie,
+    setting,
   };
 
   // pass the value in provider and return
