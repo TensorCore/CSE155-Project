@@ -14,13 +14,13 @@ export default function CalorieButton(props) {
         <View style = {styles.container}>
             <TouchableOpacity style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
                 <View>
-                    <Text style = {{...styles.text, color: colors.text}}>Food</Text>
+                    <Text style = {{...styles.text, color: colors.text}}>Calories</Text>
                 </View>
 
                 <ValueRecord label = 'Calorie' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
-                    <ProgressBar name='calorie' max={1000} selectedDate = {props.passThroughDate}/>
+                    <ProgressBar name='calorie' selectedDate = {props.passThroughDate}/>
                 </View>
             </TouchableOpacity>
         </View>

@@ -8,7 +8,11 @@ export default function ProgressBar(props) {
     // Make sure progress value is linked to data
     const { data } = useContext(DataContext);
 
+    const { setting } = useContext(DataContext);
+
     const [progress, setValue] = useState(0);
+
+    const [goal, setGoal] = useState(10);
 
     var updated = false;
 
@@ -24,7 +28,7 @@ export default function ProgressBar(props) {
     }
 
     const getProgressColor = () => {
-        let progressPerc = progress / props.max;
+        let progressPerc = progress / goal;
         if (progressPerc <= 1 / 3) {
             return (colors.primary === 'azure' ? '#FAA' : '#A55');
         } else if (progressPerc <= 2 / 3) {
@@ -47,13 +51,16 @@ export default function ProgressBar(props) {
         if (!updated) {
             setValue(0);
         }
+        if (!(typeof setting[0][props.name + 'Goal'] === 'undefined')) {
+            setGoal(setting[0][props.name + 'Goal']);
+        }
         setColor(getProgressColor());
-    }, [colors, data, props.selectedDate, progress])
+    }, [colors, data, props.selectedDate, progress, setting, goal])
 
     return (
         <View>
             <Progress.Bar borderColor={colors.text} height={15} width={190} borderRadius={10}
-                color={progressColor} progress={progress / props.max} />
+                color={progressColor} progress={progress / goal} />
         </View>
     );
 }

@@ -131,7 +131,7 @@ const setupDataAsync = () => {
   })
   .catch((err)=>{console.log(err)});
 
-  insert('setting', [{id: 1, ExerciseGoal: 425, WaterGoal: 8, FoodGoal: 2250}])
+  insert('setting', [{id: 1, ExerciseGoal: 2500, WaterGoal: 8, FoodGoal: 2250}])
   .then(()=>{
     console.log('Inserted SettingData')
   })

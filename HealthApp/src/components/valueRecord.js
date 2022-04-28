@@ -15,11 +15,11 @@ export default function ValueRecord(props) {
 
     useEffect(()=>{
         if(label.toLowerCase() === 'exercise'){
-            setMaxSettingVal(setting[0].ExerciseGoal)
+            setMaxSettingVal(setting[0].exerciseGoal)
         } else if(label.toLowerCase() === 'water') {
-            setMaxSettingVal(setting[0].WaterGoal)
+            setMaxSettingVal(setting[0].waterGoal)
         } else if(label.toLowerCase() === 'calorie') {
-            setMaxSettingVal(setting[0].FoodGoal)
+            setMaxSettingVal(setting[0].calorieGoal)
         }
 
         setLabel(props.label);

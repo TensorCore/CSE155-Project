@@ -8,7 +8,11 @@ export default function ProgressRing(props) {
     // Make sure progress value is linked to data
     const { data } = useContext(DataContext);
 
+    const { setting } = useContext(DataContext);
+
     const [progress, setValue] = useState(0);
+
+    const [goal, setGoal] = useState(10);
 
     var updated = false;
 
@@ -24,7 +28,6 @@ export default function ProgressRing(props) {
     }
 
     const getProgressColor = () => {
-        let progressPerc = progress / props.max;
         return (colors.primary === 'azure' ? '#5CF' : '#27A');
     }
 
@@ -41,13 +44,16 @@ export default function ProgressRing(props) {
         if (!updated) {
             setValue(0);
         }
+        if (!(typeof setting[0][props.name + 'Goal'] === 'undefined')) {
+            setGoal(setting[0][props.name + 'Goal']);
+        }
         setColor(getProgressColor());
-    }, [colors, data, props.selectedDate, progress])
+    }, [colors, data, props.selectedDate, progress, setting, goal])
 
     return (
         <View>
             <Progress.Circle borderColor={colors.text} thickness={24} size={200} borderRadius={10}
-                color={progressColor} progress={progress / props.max} showsText textStyle={{color: colors.text}}/>
+                color={progressColor} progress={progress / goal} showsText textStyle={{color: colors.text}}/>
         </View>
     );
 }

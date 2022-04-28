@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useContext } from 'react';
 import { useTheme } from '@react-navigation/native';
-import { View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import TimeGraph from '../components/timeGraph';
+import getToday from '../data/today';
+import ProgressRing from '../components/progressRing';
 
 export default function CalorieScreen({ navigation }) {
     const { colors } = useTheme();
@@ -13,8 +15,19 @@ export default function CalorieScreen({ navigation }) {
         });
     }, [colors])
     return (
-        <View>
-            <TimeGraph name="calorie" goal={1000}/>
-        </View>
+        <ScrollView contentContainerStyle={{ alignItems: 'center', backgroundColor: colors.background }}>
+            <TimeGraph name="calorie"/>
+            <View style={{ backgroundColor: colors.card, width: '100%', alignItems: 'center' }}>
+                <View style={{ width: '100%' }}>
+                    <Text style={{
+                        fontSize: 15,
+                        fontWeight: 'bold',
+                        padding: 10
+                    }}>Today{'\n' + getToday()}
+                    </Text>
+                </View>
+                <ProgressRing name='calorie' selectedDate={getToday()} />
+            </View>
+        </ScrollView>
     );
 }
