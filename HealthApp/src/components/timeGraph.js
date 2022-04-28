@@ -1,10 +1,13 @@
 import { useTheme } from '@react-navigation/native';
 import { useContext, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
-import { VictoryScatter, VictoryChart, VictoryAxis, VictoryLabel, VictoryTooltip, VictoryVoronoiContainer, VictoryBar, Bar, Background } from 'victory-native';
+import { createContainer, VictoryZoomContainer, VictoryScatter, VictoryChart, VictoryAxis, VictoryLabel, VictoryTooltip, VictoryVoronoiContainer, VictoryBar, Bar, Background } from 'victory-native';
 import { DataContext } from '../data/dataContext';
 
 export default function TimeGraph(props) {
+
+    const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
+
     const { data } = useContext(DataContext);
 
     const { colors } = useTheme();
@@ -75,9 +78,12 @@ export default function TimeGraph(props) {
             }}>All Time</Text>
             <VictoryChart
                 // Voronoi container makes tap jump to closest component
-                containerComponent={<VictoryVoronoiContainer
+                containerComponent={<VictoryZoomVoronoiContainer
+                    // Tooltip will show date:\n data
+                    labels={({ datum }) =>
+                        `${getMonthDay(data[datum._x - 1].timestamp)}:\n${datum._y}`}
                     // Look for closest in x direction
-                    voronoiDimension="x" />}
+                    voronoiDimension="x"/>}
                 // Pad left and right of x axis so bars don't overlap with y-axis
                 domainPadding={{ x: 20 }}>
                 <VictoryBar
@@ -97,9 +103,6 @@ export default function TimeGraph(props) {
                         // Currently has issues with far left one and the axis label
                         flyoutStyle={{ fill: colors.card, opacity: 0.5 }}
                     />}
-                    // Tooltip will show date:\n data
-                    labels={({ datum }) =>
-                        `${getMonthDay(data[datum._x - 1].timestamp)}:\n${datum._y}`}
                     // Set styling of graph
                     style={{
                         // Fill data points with colors based on value
