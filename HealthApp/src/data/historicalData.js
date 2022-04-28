@@ -1,8 +1,8 @@
 import React from "react";
 
 export default historicalData = [
-                                {timestamp: '2022-03-01', water: 5, exercise: 1000, calorie: 200}, 
-                                {timestamp: '2022-03-02', water: 10, exercise: 500, calorie: 412},
+                                {timestamp: '2022-03-01', water: 5, exercise: 1000, calorie: 2000}, 
+                                {timestamp: '2022-03-02', water: 10, exercise: 500, calorie: 2818},
                                 {timestamp: '2022-03-03', water: 7, exercise: 225, calorie: 512},
                                 {timestamp: '2022-03-04', water: 8, exercise: 327, calorie: 1002},
                                 {timestamp: '2022-03-05', water: 5, exercise: 382, calorie: 213},
@@ -19,13 +19,13 @@ export default historicalData = [
                                 {timestamp: '2022-04-07', water: 3, exercise: 955, calorie: 777},
                                 {timestamp: '2022-04-08', water: 6, exercise: 519, calorie: 513},
                                 {timestamp: '2022-04-09', water: 7, exercise: 192, calorie: 838},
-                                {timestamp: '2022-04-11', water: 5, exercise: 1000, calorie: 200}, 
-                                {timestamp: '2022-04-12', water: 10, exercise: 500, calorie: 412},
-                                {timestamp: '2022-04-13', water: 7, exercise: 225, calorie: 512},
-                                {timestamp: '2022-04-14', water: 8, exercise: 327, calorie: 1002},
-                                {timestamp: '2022-04-15', water: 5, exercise: 382, calorie: 213},
-                                {timestamp: '2022-04-16', water: 4, exercise: 513, calorie: 888},
-                                {timestamp: '2022-04-17', water: 3, exercise: 955, calorie: 777},
-                                {timestamp: '2022-04-18', water: 6, exercise: 519, calorie: 513},
-                                {timestamp: '2022-04-19', water: 7, exercise: 192, calorie: 838},
+                                {timestamp: '2022-04-11', water: 5, exercise: 1000, calorie: 2222}, 
+                                {timestamp: '2022-04-12', water: 10, exercise: 500, calorie: 2222},
+                                {timestamp: '2022-04-13', water: 7, exercise: 225, calorie: 2109},
+                                {timestamp: '2022-04-14', water: 8, exercise: 327, calorie: 1983},
+                                {timestamp: '2022-04-15', water: 5, exercise: 382, calorie: 1832},
+                                {timestamp: '2022-04-16', water: 4, exercise: 513, calorie: 1300},
+                                {timestamp: '2022-04-17', water: 3, exercise: 955, calorie: 2111},
+                                {timestamp: '2022-04-18', water: 6, exercise: 519, calorie: 2100},
+                                {timestamp: '2022-04-19', water: 7, exercise: 192, calorie: 2089},
                                 ];
