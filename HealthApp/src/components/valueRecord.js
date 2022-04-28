@@ -14,12 +14,13 @@ export default function ValueRecord(props) {
     const [maxSettingVal, setMaxSettingVal] = useState(0);
 
     useEffect(()=>{
+        console.log(setting);
         if(label.toLowerCase() === 'exercise'){
-            setMaxSettingVal(setting[0].exerciseGoal)
+            setMaxSettingVal(setting[0].ExerciseGoal)
         } else if(label.toLowerCase() === 'water') {
-            setMaxSettingVal(setting[0].waterGoal)
+            setMaxSettingVal(setting[0].WaterGoal)
         } else if(label.toLowerCase() === 'calorie') {
-            setMaxSettingVal(setting[0].calorieGoal)
+            setMaxSettingVal(setting[0].FoodGoal)
         }
 
         setLabel(props.label);
@@ -62,7 +63,6 @@ export default function ValueRecord(props) {
                         <Text style={{...styles.title, color: colors.text}}>{props.selectedDate}</Text>
                         <View style={styles.formInput}>
                         <InputSpinner onChange={setNumInput} onIncrease={setNumInput} value = {numInput} onDecrease={setNumInput} placeholder={'  Update  '} min ={0} max={maxSettingVal*2} step={maxSettingVal/20} skin="clean" />
-
                         </View>
 
                         <View style = {{alignContent:'flex-end', marginTop: 15}}>  
