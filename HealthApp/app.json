@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HealthAppMetrics",
-    "slug": "metricapp",
+    "name": "HealthAppMetric",
+    "slug": "metricapphealth",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
