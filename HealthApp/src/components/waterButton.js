@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Pressable, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
 import getToday from '../data/today';
@@ -7,19 +7,63 @@ import ProgressBar from './progressBar';
 import ValueRecord from './valueRecord';
 
 export default function WaterButton(props) {
-    const {data} = useContext(DataContext);
-    const {colors} = useTheme();
+    const { data } = useContext(DataContext);
+
+    const { colors } = useTheme();
+
+    const { setting } = useContext(DataContext);
+
+    const [progress, setValue] = useState(0);
+
+    const [goal, setGoal] = useState(10);
+
+    var updated = false;
+
+    // Extract only the value we care about (today's value)
+    const getDailyData = (obj) => {
+        // Today doesn't have data right now
+        // if (getToday() === obj.timestamp) {
+        if (getToday() === obj.timestamp) {
+            setValue(obj['water']);
+            updated = true;
+        }
+    }
+
+    useEffect(() => {
+        updated = false;
+        if (!(typeof data === 'undefined')) {
+            data.map(getDailyData);
+        }
+        // Runs if the the object is undefined or there is no data for our date
+        if (!updated) {
+            setValue(0);
+        }
+        if (!(typeof setting[0]['waterGoal'] === 'undefined')) {
+            setGoal(setting[0]['waterGoal']);
+        }
+    }, [data, setting])
+
     return (
-        <View style = {styles.container}>
-            <TouchableOpacity style = {{...styles.button, backgroundColor: colors.card, paddingBottom: props.padding}} onPress={props.nav}>
+        <View style={styles.container}>
+            <TouchableOpacity style={{ ...styles.button, backgroundColor: colors.card, paddingBottom: props.padding }} onPress={props.nav}>
                 <View>
-                    <Text style = {{...styles.text, color: colors.text}}>Water</Text>
+                    <Text style={{ ...styles.text, color: colors.text }}>Water</Text>
                 </View>
 
-                <ValueRecord label = 'Water' selectedDate = {props.passThroughDate}></ValueRecord>
+                <View style={{ width: '100%', alignItems: 'center', flexDirection: 'row' }}>
+                    <View style={{ width: '70%' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+                            <Text style={{ ...styles.text, color: colors.text, fontSize: 25 }}>{progress}</Text>
+                            <Text style={{ ...styles.text, color: colors.text, fontWeight: 'normal'}}>/{goal} Cups</Text>
+                        </View>
+                    </View>
+                    <View style={{ width: '30%' }}>
+                        <ValueRecord label='Water' selectedDate={props.passThroughDate}></ValueRecord>
+                    </View>
+                </View>
 
                 <View>
-                    <ProgressBar name='water' selectedDate = {props.passThroughDate}/>
+                    <ProgressBar name='water' selectedDate={props.passThroughDate} />
                 </View>
             </TouchableOpacity>
         </View>
@@ -44,4 +88,4 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
     }
-  }); 
+}); 
