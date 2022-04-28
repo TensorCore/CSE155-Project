@@ -56,7 +56,7 @@ export default function ProgressBar(props) {
         }
         setColor(getProgressColor());
     }, [colors, data, props.selectedDate, progress, setting, goal])
-
+    
     return (
         <View>
             <Progress.Bar borderColor={colors.text} height={15} width={190} borderRadius={10}

@@ -14,7 +14,6 @@ export default function ValueRecord(props) {
     const [maxSettingVal, setMaxSettingVal] = useState(0);
 
     useEffect(()=>{
-        console.log(setting);
         if(label.toLowerCase() === 'exercise'){
             setMaxSettingVal(setting[0].ExerciseGoal)
         } else if(label.toLowerCase() === 'water') {
