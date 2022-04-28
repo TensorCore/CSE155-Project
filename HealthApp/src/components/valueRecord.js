@@ -58,10 +58,10 @@ export default function ValueRecord(props) {
             >
                 <View style={styles.centeredView}>
                     <View style={{backgroundColor: colors.background, ...styles.modalView}}>
-                        <Text style={styles.title}>{label} Record</Text>
-                        <Text style={styles.title}>{props.selectedDate}</Text>
+                        <Text style={{...styles.title, color: colors.text}}>{label} Record</Text>
+                        <Text style={{...styles.title, color: colors.text}}>{props.selectedDate}</Text>
                         <View style={styles.formInput}>
-                        <InputSpinner onChange={setNumInput} onIncrease={setNumInput} value = {numInput} onDecrease={setNumInput} placeholder={'  Update  '} min ={0} max={maxSettingVal*2} step={maxSettingVal/20} />
+                        <InputSpinner onChange={setNumInput} onIncrease={setNumInput} value = {numInput} onDecrease={setNumInput} placeholder={'  Update  '} min ={0} max={maxSettingVal*2} step={maxSettingVal/20} skin="clean" />
 
                         </View>
 
