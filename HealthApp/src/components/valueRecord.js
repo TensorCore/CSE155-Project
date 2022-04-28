@@ -1,12 +1,13 @@
 import React, {useState, useEffect, useContext} from "react";
-import { Pressable, StyleSheet, Text, View, Modal, TouchableOpacity, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput} from 'react-native';
+import InputSpinner from "react-native-input-spinner";
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from "../data/dataContext";
 import gatherDateData from "../data/dateData";
 
 export default function ValueRecord(props) {
-    const {data, updateData, setting, updateSetting} = useContext(DataContext);
-    
+    const {data, updateData, setting} = useContext(DataContext);
+
     const [modalVisible, setModalVisible] = useState(false);
     const {colors} = useTheme();
     const [label, setLabel] = useState('');
@@ -14,8 +15,17 @@ export default function ValueRecord(props) {
     
     useEffect(()=>{
         setLabel(props.label);
-        let val = gatherDateData(props.label, props.selectedDate, data)
-        setNumInput(val===null ? 0 : val);
+        data.map(res=>{
+            if(res.timestamp === props.selectedDate){
+                if(label.toLowerCase() === 'exercise'){
+                    setNumInput(res.exercise)
+                } else if(label.toLowerCase() === 'water') {
+                    setNumInput(res.water)
+                } else if(label.toLowerCase() === 'calorie') {
+                    setNumInput(res.calorie)
+                }
+            }
+        })
     },[props.label, data, props.selectedDate])
 
     const printdata = () => {
@@ -24,9 +34,10 @@ export default function ValueRecord(props) {
 
     const recordData = () => {
         if(numInput>=0){
-        updateData(props.selectedDate, props.label.toLowerCase(), numInput)
+            console.log('Recording Data')
+            updateData(props.selectedDate, props.label.toLowerCase(), numInput)
         }
-        console.log('Recording Data')
+        
     }
     return(
         <View style = {{...styles.record, borderColor: colors.text}}>
@@ -35,14 +46,15 @@ export default function ValueRecord(props) {
                 animationType="fade"
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={()=>setModalVisible((prev)=>{return(!prev)})}
+                onRequestClose={()=>{setModalVisible(false)}}
             >
                 <View style={styles.centeredView}>
                     <View style={{backgroundColor: colors.background, ...styles.modalView}}>
                         <Text style={styles.title}>{label} Record</Text>
                         <Text style={styles.title}>{props.selectedDate}</Text>
                         <View style={styles.formInput}>
-                        <TextInput style={styles.input} onChangeText={setNumInput} keyboardType="numeric" placeholder={'Update Data'} value={numInput===undefined ? undefined:numInput.toString()}/>
+                        <InputSpinner onChange={setNumInput} onIncrease={setNumInput} value = {numInput} onDecrease={setNumInput} placeholder={'Update Data'}/>
+
                         </View>
 
                         <View style = {{alignContent:'flex-end', marginTop: 15}}>  
@@ -117,9 +129,6 @@ const styles = StyleSheet.create({
     },
     formInput: {
         flexDirection:'row',
-        borderWidth: 2,
-        borderColor: 'black',
-        borderRadius: 50,
         alignContent: 'center',
         justifyContent: 'center',
         margin: 80,

@@ -118,12 +118,22 @@ const dropDatabaseTablesAsync = async () => {
   dropTable('data')
   .then(()=>{console.log('Dropped Data Table')})
   .catch((err)=>{console.log(err)});
+
+  dropTable('setting')
+  .then(()=>{console.log('Dropped Data Table')})
+  .catch((err)=>{console.log(err)});
 }
 
 const setupDataAsync = () => {
   insert('data', historicalData)
   .then(()=>{
-    console.log('Inserted TestSetupData')
+    console.log('Inserted Historical Data')
+  })
+  .catch((err)=>{console.log(err)});
+
+  insert('setting', [{id: 1, ExerciseGoal: 2500, WaterGoal: 8, FoodGoal: 2250}])
+  .then(()=>{
+    console.log('Inserted SettingData')
   })
   .catch((err)=>{console.log(err)});
 }
