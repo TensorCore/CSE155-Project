@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput} from 'react
 import InputSpinner from "react-native-input-spinner";
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from "../data/dataContext";
-import gatherDateData from "../data/dateData";
 
 export default function ValueRecord(props) {
     const {data, updateData, setting} = useContext(DataContext);
@@ -12,8 +11,17 @@ export default function ValueRecord(props) {
     const {colors} = useTheme();
     const [label, setLabel] = useState('');
     const [numInput, setNumInput] = useState(0);
-    
+    const [maxSettingVal, setMaxSettingVal] = useState(0);
+
     useEffect(()=>{
+        if(label.toLowerCase() === 'exercise'){
+            setMaxSettingVal(setting[0].ExerciseGoal)
+        } else if(label.toLowerCase() === 'water') {
+            setMaxSettingVal(setting[0].WaterGoal)
+        } else if(label.toLowerCase() === 'calorie') {
+            setMaxSettingVal(setting[0].FoodGoal)
+        }
+
         setLabel(props.label);
         data.map(res=>{
             if(res.timestamp === props.selectedDate){
@@ -26,7 +34,7 @@ export default function ValueRecord(props) {
                 }
             }
         })
-    },[props.label, data, props.selectedDate])
+    },[props.label, data, props.selectedDate, setting])
 
     const printdata = () => {
         console.log(data);
@@ -53,7 +61,7 @@ export default function ValueRecord(props) {
                         <Text style={styles.title}>{label} Record</Text>
                         <Text style={styles.title}>{props.selectedDate}</Text>
                         <View style={styles.formInput}>
-                        <InputSpinner onChange={setNumInput} onIncrease={setNumInput} value = {numInput} onDecrease={setNumInput} placeholder={'Update Data'}/>
+                        <InputSpinner onChange={setNumInput} onIncrease={setNumInput} value = {numInput} onDecrease={setNumInput} placeholder={'  Update  '} min ={0} max={maxSettingVal*2} step={maxSettingVal/20} />
 
                         </View>
 

@@ -19,10 +19,10 @@ function HomeStackScreen() {
   return(
     <HomeStack.Navigator>
       <HomeStack.Group screenOptions={headerStyle}>
-        <HomeStack.Screen name = "HomeScreen" component={HomeScreen} />
-        <HomeStack.Screen name = "ExerciseScreen" component={ExerciseScreen} />
-        <HomeStack.Screen name = "WaterScreen" component={WaterScreen} />
-        <HomeStack.Screen name = "CalorieScreen" component={CalorieScreen} />
+        <HomeStack.Screen name = "HomeScreen"  component={HomeScreen} options={{ title: 'Health Metric App' }}/>
+        <HomeStack.Screen name = "ExerciseScreen" component={ExerciseScreen} options={{ title: 'Exercise' }}/>
+        <HomeStack.Screen name = "WaterScreen" component={WaterScreen} options={{ title: 'Water' }}/>
+        <HomeStack.Screen name = "CalorieScreen" component={CalorieScreen} options={{ title: 'Calories' }} />
       </HomeStack.Group>
     </HomeStack.Navigator>
   )
@@ -33,7 +33,7 @@ function SettingStackScreen() {
   return(
     <SettingStack.Navigator>
       <SettingStack.Group screenOptions={headerStyle}>
-        <SettingStack.Screen name = "SettingScreen" component={SettingScreen}/>
+        <SettingStack.Screen name = "SettingScreen" component={SettingScreen} options={{ title: 'Settings' }}/>
       </SettingStack.Group>
     </SettingStack.Navigator>
   )
