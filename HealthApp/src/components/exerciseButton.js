@@ -23,7 +23,7 @@ export default function ExerciseButton(props) {
     const getDailyData = (obj) => {
         // Today doesn't have data right now
         // if (getToday() === obj.timestamp) {
-        if (getToday() === obj.timestamp) {
+        if (props.passThroughDate === obj.timestamp) {
             setValue(obj['exercise']);
             updated = true;
         }
@@ -41,7 +41,7 @@ export default function ExerciseButton(props) {
         if (!(typeof setting[0]['exerciseGoal'] === 'undefined')) {
             setGoal(setting[0]['exerciseGoal']);
         }
-    }, [data, setting])
+    }, [data, setting, props.passThroughDate])
 
     return (
         <View style={styles.container}>

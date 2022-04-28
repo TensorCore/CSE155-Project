@@ -23,7 +23,7 @@ export default function CalorieButton(props) {
     const getDailyData = (obj) => {
         // Today doesn't have data right now
         // if (getToday() === obj.timestamp) {
-        if (getToday() === obj.timestamp) {
+        if (props.passThroughDate === obj.timestamp) {
             setValue(obj['calorie']);
             updated = true;
         }
@@ -41,7 +41,7 @@ export default function CalorieButton(props) {
         if (!(typeof setting[0]['calorieGoal'] === 'undefined')) {
             setGoal(setting[0]['calorieGoal']);
         }
-    }, [data, setting])
+    }, [data, setting, props.passThroughDate])
 
     return (
         <View style={styles.container}>

@@ -23,7 +23,7 @@ export default function WaterButton(props) {
     const getDailyData = (obj) => {
         // Today doesn't have data right now
         // if (getToday() === obj.timestamp) {
-        if (getToday() === obj.timestamp) {
+        if (props.passThroughDate === obj.timestamp) {
             setValue(obj['water']);
             updated = true;
         }
@@ -41,7 +41,7 @@ export default function WaterButton(props) {
         if (!(typeof setting[0]['waterGoal'] === 'undefined')) {
             setGoal(setting[0]['waterGoal']);
         }
-    }, [data, setting])
+    }, [data, setting, props.passThroughDate])
 
     return (
         <View style={styles.container}>
