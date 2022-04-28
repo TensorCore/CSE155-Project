@@ -28,6 +28,9 @@ export default function ProgressRing(props) {
     }
 
     const getProgressColor = () => {
+        if (progress < goal) {
+            return (colors.primary === 'azure' ? '#777' : '#999');
+        }
         return (colors.primary === 'azure' ? '#5CF' : '#27A');
     }
 
