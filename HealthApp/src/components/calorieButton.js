@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { DataContext } from '../data/dataContext';
+import getToday from '../data/today';
 import ProgressBar from './progressBar';
 import ValueRecord from './valueRecord';
 
@@ -22,7 +23,7 @@ export default function CalorieButton(props) {
     const getDailyData = (obj) => {
         // Today doesn't have data right now
         // if (getToday() === obj.timestamp) {
-        if (props.passThroughDate === obj.timestamp) {
+        if (getToday() === obj.timestamp) {
             setValue(obj['calorie']);
             updated = true;
         }
@@ -40,7 +41,7 @@ export default function CalorieButton(props) {
         if (!(typeof setting[0]['calorieGoal'] === 'undefined')) {
             setGoal(setting[0]['calorieGoal']);
         }
-    }, [data, setting, props.passThroughDate])
+    }, [data, setting])
 
     return (
         <View style={styles.container}>
