@@ -18,16 +18,23 @@ export default function TimeGraph(props) {
 
     const getColors = () => {
         return (colors.primary === 'azure' ?
-            { good: '#AFA', mid: '#FC5', bad: "#FAA" } :
-            { good: '#5A5', mid: '#A72', bad: "#A55" });
+            // { good: '#AFA', mid: '#FC5', bad: "#FAA" } :
+            // { good: '#5A5', mid: '#A72', bad: "#A55" });
+            { good: '#5CF', bad: '#777' } :
+            { good: '#27A', bad: '#999' });
     }
 
     const getColor = (val) => {
         let pcnt = val / goal;
-        if (pcnt <= 1 / 3) {
+        // if (pcnt <= 1 / 3) {
+        //     return dataColors.bad;
+        // } else if (pcnt <= 2 / 3) {
+        //     return dataColors.mid;
+        // } else {
+        //     return dataColors.good;
+        // }
+        if (pcnt < 1) {
             return dataColors.bad;
-        } else if (pcnt <= 2 / 3) {
-            return dataColors.mid;
         } else {
             return dataColors.good;
         }
@@ -76,7 +83,7 @@ export default function TimeGraph(props) {
     }, [colors])
 
     return (
-        <View style={{ backgroundColor: colors.background, elevation: 1 }}>
+        <View style={{ backgroundColor: colors.card, elevation: 1 }}>
             <Text style={{
                 paddingLeft: 10,
                 paddingTop: 10,

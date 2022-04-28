@@ -100,8 +100,8 @@ const updateSetting = (infoType, dataIn, successFunc) =>{
       .catch((err) => console.log(err));
     break;      
     case "calorie":
-      executeSql(`INSERT or REPLACE INTO setting (id, FoodGoal, ExerciseGoal, WaterGoal) VALUES (1, ${dataIn}, (Select ExerciseGoal FROM setting WHERE ID=1), (Select WaterGoal FROM setting WHERE ID=1))`)
-      .then(() => {console.log(`Updated CalorieGoal ${dataIn}`); successFunc();})
+      executeSql(`INSERT or REPLACE INTO setting (id, calorieGoal, exerciseGoal, waterGoal) VALUES (1, ${dataIn}, (Select exerciseGoal FROM setting WHERE ID=1), (Select waterGoal FROM setting WHERE ID=1))`)
+      .then(() => {console.log(`Updated calorieGoal ${dataIn}`); successFunc();})
       .catch((err) => console.log(err));
     break;    
   }
