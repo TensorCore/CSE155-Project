@@ -61,7 +61,7 @@ export default function ValueRecord(props) {
                         <Text style={{...styles.title, color: colors.text}}>{label} Record</Text>
                         <Text style={{...styles.title, color: colors.text}}>{props.selectedDate}</Text>
                         <View style={styles.formInput}>
-                        <InputSpinner onChange={setNumInput} onIncrease={setNumInput} value = {numInput} onDecrease={setNumInput} placeholder={'  Update  '} min ={0} max={maxSettingVal*2} step={maxSettingVal/20} skin="clean" />
+                        <InputSpinner onChange={setNumInput} onIncrease={setNumInput} value = {numInput} onDecrease={setNumInput} placeholder={'  Update  '} min ={0} max={maxSettingVal*2} step={maxSettingVal/10} skin="clean" />
                         </View>
 
                         <View style = {{alignContent:'flex-end', marginTop: 15}}>  
