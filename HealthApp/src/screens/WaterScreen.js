@@ -32,7 +32,7 @@ export default function WaterScreen({ navigation }) {
                 </View>
                 <View style={{ width: '50%', alignContent: 'flex-end' }}>
                     <Text style={{ textAlign: 'right', padding: 10 }}>
-                        Current Goal{'\n' + setting[0].exerciseGoal}
+                        Current Goal{'\n' + setting[0].waterGoal}
                     </Text>
                 </View>
             </View>
