@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         elevation: 4,
         padding: 10,
+        borderRadius: 5,
       },
       tapDateText: {
         fontSize: 15,
