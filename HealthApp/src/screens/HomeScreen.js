@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState} from 'react';
 import { useTheme } from '@react-navigation/native';
-import { View, Text, StyleSheet, ScrollView, Button } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Button, TouchableOpacity } from 'react-native';
 import CalorieButton from '../components/calorieButton';
 import WaterButton from '../components/waterButton';
 import ExerciseButton from '../components/exerciseButton';
@@ -52,7 +52,7 @@ export default function HomeScreen({navigation}) {
             <ScrollView style = {{...styles.scrollView, backgroundColor: colors.background}}>
                 <View style={{...styles.card, backgroundColor: colors.card, }}>
                     <Text style={{...styles.dateText, color: colors.text}}>{preDateSetup.toISOString().slice(0, 10)===getToday() ? `Today\n${preDateSetup.toLocaleDateString()} ` :preDateSetup.toLocaleDateString()}</Text>
-                    <Button title="Change Date" onPress={pressCalendarFunction}></Button>
+                    <TouchableOpacity style={styles.tapDate} onPress={pressCalendarFunction}><Text style={styles.tapDateText}>Change Date</Text></TouchableOpacity>
                 </View>
                 {showCalendar && (<DateTimePicker display = 'spinner' value = {preDateSetup} mode = 'date' onChange={calendarFunction} maximumDate={new Date()}></DateTimePicker> )}
 
@@ -89,5 +89,18 @@ const styles = StyleSheet.create({
         fontSize: 20, 
         marginLeft: 25,
         marginRight: 75
+      },
+      tapDate: {
+        borderColor: 'dodgerblue',
+        borderWidth: 0.3,
+        backgroundColor: 'dodgerblue',
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 4,
+        padding: 10,
+      },
+      tapDateText: {
+        fontSize: 15,
+        color: 'white',
       }
 });

@@ -23,7 +23,6 @@ export default function SettingScreen({ navigation }) {
         setExercise(setting[0].exerciseGoal);
         setWater(setting[0].waterGoal);
         setCalorie(setting[0].calorieGoal);
-        console.log(setting);
     }, [setting])
 
     const pushSetting = () => {
