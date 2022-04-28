@@ -19,7 +19,7 @@ export default function WaterButton(props) {
                 <ValueRecord label = 'Water' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
-                    <ProgressBar name='water' max={10} selectedDate = {props.passThroughDate}/>
+                    <ProgressBar name='water' selectedDate = {props.passThroughDate}/>
                 </View>
             </TouchableOpacity>
         </View>

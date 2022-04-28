@@ -20,9 +20,9 @@ export default function SettingScreen({ navigation }) {
     }, [colors])
 
     useEffect(() => {
-        setExercise(setting[0].ExerciseGoal);
-        setWater(setting[0].WaterGoal);
-        setCalorie(setting[0].FoodGoal);
+        setExercise(setting[0].exerciseGoal);
+        setWater(setting[0].waterGoal);
+        setCalorie(setting[0].calorieGoal);
         console.log(setting);
     }, [setting])
 

@@ -8,7 +8,11 @@ export default function TimeGraph(props) {
 
     const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
 
+    const { setting } = useContext(DataContext);
+
     const { data } = useContext(DataContext);
+
+    const [goal, setGoal] = useState(10);
 
     const { colors } = useTheme();
 
@@ -19,7 +23,7 @@ export default function TimeGraph(props) {
     }
 
     const getColor = (val) => {
-        let pcnt = val / props.goal;
+        let pcnt = val / goal;
         if (pcnt <= 1 / 3) {
             return dataColors.bad;
         } else if (pcnt <= 2 / 3) {
@@ -66,6 +70,9 @@ export default function TimeGraph(props) {
 
     useEffect(() => {
         setColors(getColors());
+        if (!(typeof setting[0][props.name + 'Goal'] === 'undefined')) {
+            setGoal(setting[0][props.name + 'Goal']);
+        }
     }, [colors])
 
     return (
@@ -83,7 +90,7 @@ export default function TimeGraph(props) {
                     labels={({ datum }) =>
                         `${getMonthDay(data[datum._x - 1].timestamp)}:\n${datum._y}`}
                     // Look for closest in x direction
-                    voronoiDimension="x"/>}
+                    voronoiDimension="x" />}
                 // Pad left and right of x axis so bars don't overlap with y-axis
                 domainPadding={{ x: 20 }}>
                 <VictoryBar

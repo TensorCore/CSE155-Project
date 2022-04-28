@@ -59,7 +59,7 @@ const setupDatabaseAsync = () => {
     createTable("data", {id: "INTEGER PRIMARY KEY AUTOINCREMENT", timestamp: "DATE DEFAULT (date('now', 'localtime')) UNIQUE" , water:"INT", exercise:"INT", calorie:"INT"})
     .then(()=>{console.log('Created Data Table')})
     .catch((err)=>console.log(err));
-    createTable("setting", {id: "INTEGER PRIMARY KEY", ExerciseGoal: "INTEGER", FoodGoal: "INTEGER", WaterGoal: "INTEGER"})
+    createTable("setting", {id: "INTEGER PRIMARY KEY", exerciseGoal: "INTEGER", calorieGoal: "INTEGER", waterGoal: "INTEGER"})
     .then(()=>{console.log('Created Setting Table')})
     .catch((err)=>console.log(err));
 }
@@ -90,17 +90,17 @@ const updateData = (Date, infoType, dataIn, successFunc) =>{
 const updateSetting = (infoType, dataIn, successFunc) =>{
   switch (infoType) {
     case "water":
-      executeSql(`INSERT or REPLACE INTO setting (id, WaterGoal, ExerciseGoal, FoodGoal) VALUES (1, ${dataIn}, (Select ExerciseGoal FROM setting WHERE ID=1), (Select FoodGoal FROM setting WHERE ID=1))`)
-      .then(() => {console.log(`Updated WaterGoal ${dataIn}`); successFunc();})
+      executeSql(`INSERT or REPLACE INTO setting (id, waterGoal, exerciseGoal, calorieGoal) VALUES (1, ${dataIn}, (Select exerciseGoal FROM setting WHERE ID=1), (Select calorieGoal FROM setting WHERE ID=1))`)
+      .then(() => {console.log(`Updated waterGoal ${dataIn}`); successFunc();})
       .catch((err) => console.log(err));
     break;
     case "exercise":
-      executeSql(`INSERT or REPLACE INTO setting (id, ExerciseGoal, FoodGoal, WaterGoal) VALUES (1, ${dataIn}, (Select FoodGoal FROM setting WHERE ID=1), (Select WaterGoal FROM setting WHERE ID=1))`)
-      .then(() => {console.log(`Updated ExerciseGoal ${dataIn}`); successFunc();})
+      executeSql(`INSERT or REPLACE INTO setting (id, exerciseGoal, calorieGoal, waterGoal) VALUES (1, ${dataIn}, (Select calorieGoal FROM setting WHERE ID=1), (Select waterGoal FROM setting WHERE ID=1))`)
+      .then(() => {console.log(`Updated exerciseGoal ${dataIn}`); successFunc();})
       .catch((err) => console.log(err));
     break;      
     case "calorie":
-      executeSql(`INSERT or REPLACE INTO setting (id, FoodGoal, ExerciseGoal, WaterGoal) VALUES (1, ${dataIn}, (Select ExerciseGoal FROM setting WHERE ID=1), (Select WaterGoal FROM setting WHERE ID=1))`)
+      executeSql(`INSERT or REPLACE INTO setting (id, calorieGoal, exerciseGoal, waterGoal) VALUES (1, ${dataIn}, (Select exerciseGoal FROM setting WHERE ID=1), (Select waterGoal FROM setting WHERE ID=1))`)
       .then(() => {console.log(`Updated CalorieGoal ${dataIn}`); successFunc();})
       .catch((err) => console.log(err));
     break;    
@@ -131,7 +131,7 @@ const setupDataAsync = () => {
   })
   .catch((err)=>{console.log(err)});
 
-  insert('setting', [{id: 1, ExerciseGoal: 2500, WaterGoal: 8, FoodGoal: 2250}])
+  insert('setting', [{id: 1, exerciseGoal: 2500, waterGoal: 8, calorieGoal: 2250}])
   .then(()=>{
     console.log('Inserted SettingData')
   })

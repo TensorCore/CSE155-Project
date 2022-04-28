@@ -18,7 +18,7 @@ export default function ExerciseButton(props) {
                 <ValueRecord label = 'Exercise' selectedDate = {props.passThroughDate}></ValueRecord>
 
                 <View>
-                    <ProgressBar name='exercise' max={1000} selectedDate = {props.passThroughDate}/>
+                    <ProgressBar name='exercise' selectedDate = {props.passThroughDate}/>
                 </View>
             </TouchableOpacity>
         </View>

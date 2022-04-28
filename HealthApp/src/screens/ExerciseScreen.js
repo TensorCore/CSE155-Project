@@ -27,7 +27,7 @@ export default function ExerciseScreen({ navigation }) {
                     }}>Today{'\n' + getToday()}
                     </Text>
                 </View>
-                <ProgressRing name='exercise' max={1000} selectedDate={getToday()} />
+                <ProgressRing name='exercise' selectedDate={getToday()} />
             </View>
         </ScrollView>
     );
